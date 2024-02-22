@@ -1,0 +1,25 @@
+import { bioApiHandler } from "./handlers/bio"
+import { bioLongFormApiHandler } from "./handlers/bioLongForm"
+import { bioShortFormApiHandler } from "./handlers/bioShortForm"
+import { audioApiHandler } from "./handlers/audio"
+import { blogApiHandler } from "./handlers/blog"
+import { calendarApiHandler } from "./handlers/calendar"
+import { mediaApiHandler } from "./handlers/media"
+import { photosApiHandler } from "./handlers/photos"
+import { playlistsApiHandler } from "./handlers/playlists"
+import { videosApiHandler } from "./handlers/videos"
+
+
+
+export const apiResourceHandlersMap: Record<string, Function> = {
+  audio: audioApiHandler,
+  bio: bioApiHandler,
+  bioLongForm: bioLongFormApiHandler,
+  bioShortForm: bioShortFormApiHandler,
+  blog: blogApiHandler,
+  calendar: calendarApiHandler,
+  media: mediaApiHandler,
+  playlists: playlistsApiHandler,
+  photos: photosApiHandler,
+  videos: videosApiHandler
+}
