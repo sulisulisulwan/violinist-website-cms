@@ -2,7 +2,7 @@ import * as React from 'react'
 import ListButton from '../../sharedComponents/ListButton'
 import { bioLongFormApiHandler } from '../../../api/handlers/bioLongForm'
 import { bioApiHandler } from '../../../api/handlers/bio'
-import { GlobalAppStateManagement } from '../../../App'
+import { GlobalAppStateManagement } from '../../../Cms'
 import { bioShortFormApiHandler } from '../../../api/handlers/bioShortForm'
 import { BiographyItemAPI} from 'suli-violin-website-types/src'
 const { useContext } = React

@@ -1,6 +1,6 @@
 import * as React from 'react'
 const { useState, useContext } = React
-import { GlobalAppStateManagement } from '../../../App'
+import { GlobalAppStateManagement } from '../../../Cms'
 import useTextLoader from '../../../textLoaders/_useTextLoader'
 import { useTrackPositionControls } from './useTrackPositionControls'
 import { AudioTrackDataAPI, initStateIF, playlistFormFieldStateIF } from 'suli-violin-website-types/src'

@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { VideoDataAPI, initStateIF, setStateSSA, videosFormFieldStateIF } from 'suli-violin-website-types/src'
 import { getInitFormFieldsState } from "../initFormFieldsStates"
-import config from "../config"
+import config from "../../config"
 
 const videosTextLoader = (state: initStateIF, setState: setStateSSA, setFormFieldValues: React.Dispatch<React.SetStateAction<videosFormFieldStateIF>>) => {
   useEffect(() => {

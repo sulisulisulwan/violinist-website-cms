@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { GlobalAppStateManagement } from "../App"
+import { GlobalAppStateManagement } from "../Cms"
 import audioTextLoader from "./audioTextLoader"
 import bioTextLoader from "./bioTextLoader"
 import blogTextLoader from "./blogTextLoader"

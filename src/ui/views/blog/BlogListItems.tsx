@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { GlobalAppStateManagement } from '../../../App'
+import { GlobalAppStateManagement } from '../../../Cms'
 import ListButton from '../../sharedComponents/ListButton'
 import { formatDate } from './BlogDocDisplay'
 import { BlogItemAPI } from 'suli-violin-website-types/src'

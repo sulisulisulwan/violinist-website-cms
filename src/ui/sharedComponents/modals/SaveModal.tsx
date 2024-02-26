@@ -3,7 +3,7 @@ const { useContext } = React
 import { cancelSave, dontSaveDocument, saveDocument } from '../../../crud/save'
 import ListButton from '../ListButton'
 
-import { GlobalAppStateManagement } from '../../../App'
+import { GlobalAppStateManagement } from '../../../Cms'
 import { initialFormStates } from 'suli-violin-website-types/src'
 
 interface deleteModalProps {

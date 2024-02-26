@@ -5,7 +5,7 @@ import SelectYear from '../../../sharedComponents/dateTimeSelects/SelectYear'
 import SelectTime from '../../../sharedComponents/dateTimeSelects/SelectTime'
 import DivButton from '../../../sharedComponents/DivButton'
 import CloseButton from '../../../sharedComponents/CloseButton'
-import { GlobalAppStateManagement } from '../../../../App'
+import { GlobalAppStateManagement } from '../../../../Cms'
 import { calendarFormFieldStateIF, eventListingFormStateIF, initStateIF } from 'suli-violin-website-types/src'
 
 const { useContext } = React

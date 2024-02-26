@@ -2,7 +2,7 @@ import * as React from 'react'
 const { useContext } = React
 import * as ReactDom from 'react-dom'
 import CloseButton from '../CloseButton'
-import { GlobalAppStateManagement } from '../../../App'
+import { GlobalAppStateManagement } from '../../../Cms'
 
 interface modalWrapperPropsIF {
   children: React.ReactNode

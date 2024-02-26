@@ -1,6 +1,6 @@
 import * as React from 'react'
 const { useContext, useRef } = React
-import { GlobalAppStateManagement } from '../../../App'
+import { GlobalAppStateManagement } from '../../../Cms'
 
 import { useSetFieldInForm } from '../useSetFieldInForm'
 import useTextLoader from '../../../textLoaders/_useTextLoader'

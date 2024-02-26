@@ -1,6 +1,6 @@
 import * as React from 'react'
 const { useContext } = React
-import { GlobalAppStateManagement } from '../../../App'
+import { GlobalAppStateManagement } from '../../../Cms'
 import ListButton from '../../sharedComponents/ListButton'
 import { VideoDataAPI } from 'suli-violin-website-types/src'
 

@@ -5,7 +5,7 @@ import EventDates from './calendarEditForm/EventDates'
 import Artists from './calendarEditForm/Artists'
 import Program from './calendarEditForm/Program'
 
-import { GlobalAppStateManagement } from '../../../App'
+import { GlobalAppStateManagement } from '../../../Cms'
 import useTextLoader from '../../../textLoaders/_useTextLoader'
 import { calendarFormFieldStateIF } from 'suli-violin-website-types/src'
 

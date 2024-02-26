@@ -1,7 +1,7 @@
 import * as React from 'react'
 const { useContext } = React
-import { GlobalAppStateManagement } from '../../../App'
-import config from '../../../config'
+import { GlobalAppStateManagement } from '../../../Cms'
+import config from '../../../../config'
 import { VideoDataAPI } from 'suli-violin-website-types/src'
 
 

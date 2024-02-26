@@ -3,20 +3,21 @@ import config from '../../../config'
 import { httpMethods } from 'suli-violin-website-types/src'
 const { BACKEND_API_BASE_URL } = config
 
-export const bioLongFormApiHandler = async (
+export const cmsAuthApiHandler = async (
   method: httpMethods, 
   query?: string, 
-  data?: AxiosRequestConfig
+  data?: any
   ) => {
 
   const fetcher = validMethodsMap.get(method)
 
-  if (!fetcher) throw new Error(`Invalid method [${method}] used when calling endpoint '/bio'`)
+  if (!fetcher) throw new Error(`Invalid method [${method}] used when calling endpoint '/cms-auth'`)
 
-  const result = await fetcher(`${BACKEND_API_BASE_URL}/bio/longForm`, data)
+  const result = await fetcher(`${BACKEND_API_BASE_URL}/cms-auth${query ? query : ''}`, data as AxiosRequestConfig)
   return result
 }
 
 const validMethodsMap = new Map([
-  ['PATCH', axios.patch ], 
+  ['POST', axios.post ],
+  ['GET', axios.get ],
 ])

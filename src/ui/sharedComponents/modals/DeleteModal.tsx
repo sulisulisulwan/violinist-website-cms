@@ -2,7 +2,7 @@ import * as React from 'react'
 const { useContext } = React
 import ListButton from '../ListButton'
 import { deleteDocument, dontDeleteDocument } from '../../../crud/delete'
-import { GlobalAppStateManagement } from '../../../App'
+import { GlobalAppStateManagement } from '../../../Cms'
 
 const DeleteModal = () => {
 

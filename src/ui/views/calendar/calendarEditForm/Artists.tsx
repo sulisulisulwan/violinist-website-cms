@@ -1,7 +1,7 @@
 import * as React from 'react'
 import DivButton from '../../../sharedComponents/DivButton'
 import CloseButton from '../../../sharedComponents/CloseButton'
-import { GlobalAppStateManagement } from '../../../../App'
+import { GlobalAppStateManagement } from '../../../../Cms'
 import { calendarFormFieldStateIF } from 'suli-violin-website-types/src'
 
 const getNewArtistData = () => ({

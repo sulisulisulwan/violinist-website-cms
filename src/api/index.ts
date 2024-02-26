@@ -8,6 +8,7 @@ import { mediaApiHandler } from "./handlers/media"
 import { photosApiHandler } from "./handlers/photos"
 import { playlistsApiHandler } from "./handlers/playlists"
 import { videosApiHandler } from "./handlers/videos"
+import { cmsAuthApiHandler } from "./handlers/cms-auth"
 
 
 
@@ -18,6 +19,7 @@ export const apiResourceHandlersMap: Record<string, Function> = {
   bioShortForm: bioShortFormApiHandler,
   blog: blogApiHandler,
   calendar: calendarApiHandler,
+  cmsAuth: cmsAuthApiHandler,
   media: mediaApiHandler,
   playlists: playlistsApiHandler,
   photos: photosApiHandler,
