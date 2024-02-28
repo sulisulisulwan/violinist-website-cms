@@ -3,6 +3,7 @@ const { useContext } = React
 import { GlobalAppStateManagement } from '../../../Cms'
 import ListButton from '../../sharedComponents/ListButton'
 import { VideoDataAPI } from 'suli-violin-website-types/src'
+import config from '../../../../config'
 
 const VideosListItems = () => {
 
@@ -47,7 +48,7 @@ const VideosListItems = () => {
                 }}
                 height={'100%'}
                 // width={200}
-                src={`http://localhost:1337/v1/media/videos/thumbnail?id=${video.id}`}
+                src={`${config.BACKEND_API_BASE_URL}/media/videos/thumbnail?id=${video.id}`}
               />
             </div>
             <div>

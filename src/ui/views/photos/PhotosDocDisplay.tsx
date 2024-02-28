@@ -1,4 +1,5 @@
 import * as React from 'react'
+import config from '../../../../config'
 
 interface photosDocDisplayPropsIF {
   chosenDocData: any
@@ -22,7 +23,7 @@ const PhotosDocDisplay = ({ chosenDocData }: photosDocDisplayPropsIF) => {
             border: '1px solid gray'
           }}
           width={300}
-          src={`http://localhost:1337/v1/media/photos?id=${chosenDocData.id}`}
+          src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${chosenDocData.id}`}
         />
       </div>
       <div>

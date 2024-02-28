@@ -5,8 +5,6 @@ export const blogFormValidator = (formValues: blogFormFieldStateIF): validationO
 
   const { titleText } = formValues 
 
-  console.log(formValues)
-
   const validationData = getValidationObject()
 
   if (!titleText.length) {

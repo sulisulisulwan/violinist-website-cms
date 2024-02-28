@@ -64,6 +64,7 @@ const LoginPage = ({ onSubmitHandler }: loginPagePropsIF) => {
                 <input style={{ marginLeft: 5 }} onChange={(e) => { setLoginCreds((pS: any) => ({ ...pS, password: e.target.value }))}}/>
               </label>
             </div>
+            <div id="login-message" style={{ color: 'red' }}></div>
             <div style={{ textAlign: 'center' }}>
               <input style={{ width: 100 }} type="submit"/>
             </div>

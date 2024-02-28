@@ -13,7 +13,6 @@ export const blogApiHandler = async (
 
   if (!fetcher) throw new Error(`Invalid method [${method}] used when calling endpoint '/blog'`)
 
-  console.log(data)
   const result = await fetcher(`${BACKEND_API_BASE_URL}/blog${query ? query : ''}`, data as AxiosRequestConfig)
   return result
 }

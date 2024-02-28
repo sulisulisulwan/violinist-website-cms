@@ -32,12 +32,10 @@ export const useTrackPositionControls = (formFieldValues: playlistFormFieldState
     playlist[trackToSwapIndex] = selected
 
     setFormFieldValues((prevState: any) => {
-      // console.log('prevState', prevState)
       const newState = {
         ...prevState,
         playlistTracks: playlist
       }
-      // console.log('newState', newState)
       return newState
     })
   }

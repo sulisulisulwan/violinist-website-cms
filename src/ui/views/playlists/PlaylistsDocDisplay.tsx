@@ -7,8 +7,6 @@ interface bioDocDisplayPropsIF {
 
 const PlaylistsDocDisplay = ({ chosenDocData }: bioDocDisplayPropsIF) => {
 
-  console.log(chosenDocData)
-
   return (
     <div 
       className="playlists-document-display"

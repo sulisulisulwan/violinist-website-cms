@@ -2,6 +2,7 @@ import * as React from 'react'
 import ListButton from '../../sharedComponents/ListButton'
 import { GlobalAppStateManagement } from '../../../Cms'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
+import config from '../../../../config'
 const { useContext } = React
 
 const PhotosListItems = () => {
@@ -47,7 +48,7 @@ const PhotosListItems = () => {
               }}> 
                 <img 
                   width={80}
-                  src={`http://localhost:1337/v1/media/photos?id=${photo.id}`}
+                  src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${photo.id}`}
                 />
               </div>
               <div style={{

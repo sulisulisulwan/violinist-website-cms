@@ -20,12 +20,13 @@ const PhotosEditForm = ({ formFieldValues, setFormFieldValues }: photosEditFormP
   const formRef = useRef(null)
   const imgRef = useRef(null)
   
-  const [ cropActivated, setCropActivated ] = React.useState(false)
-  const { 
-    pointerCoords, 
-    cropMoveable,
-    setCropMoveable 
-  } = useTrackMouseCoords(imgRef)
+  // const [ cropActivated, setCropActivated ] = React.useState(false)
+  // const { 
+  //   pointerCoords, 
+  //   cropMoveable,
+  //   setCropMoveable 
+  // } = useTrackMouseCoords(imgRef)
+
   const setFieldInForm = useSetFieldInForm(setFormFieldValues)
 
   const thumbnailPreviewSrc = useGetThumbnailPreview(formFieldValues, formRef.current, globalAppState.editDocId)
@@ -33,42 +34,37 @@ const PhotosEditForm = ({ formFieldValues, setFormFieldValues }: photosEditFormP
 
   const labelStyle = { paddingTop: 10 }
 
-  const cropImage = () => {
-    const canvas: any = document.getElementById('cropped')
-    const context = canvas.getContext('2d')
-    const image = new Image()
-    image.src = thumbnailPreviewSrc
+  // const cropImage = () => {
+  //   const canvas: any = document.getElementById('cropped')
+  //   const context = canvas.getContext('2d')
+  //   const image = new Image()
+  //   image.src = thumbnailPreviewSrc
 
-    const cropSquareRects = document.getElementById('cursor').getClientRects()
-    const origImgSquareRects = document.getElementById('preview').getClientRects()
+  //   const cropSquareRects = document.getElementById('cursor').getClientRects()
+  //   const origImgSquareRects = document.getElementById('preview').getClientRects()
     
-    const orignalWidth = image.width
-    const originalHeight = image.height
+  //   const orignalWidth = image.width
+  //   const originalHeight = image.height
 
-    const horizontalRatio = orignalWidth / origImgSquareRects[0].width
-    const verticalRatio = originalHeight / origImgSquareRects[0].height
+  //   const horizontalRatio = orignalWidth / origImgSquareRects[0].width
+  //   const verticalRatio = originalHeight / origImgSquareRects[0].height
 
-    
-    console.log('cropSquareRects', cropSquareRects[0].top)
-    console.log('origImgSquareRects', origImgSquareRects[0].top)
-
-    const xCrop = 0
-    // const yCrop = origImgSquareRects[0].top + cropSquareRects[0].top 
-    const yCrop = Math.abs(origImgSquareRects[0].top - cropSquareRects[0].top) * verticalRatio
-    console.log(yCrop)
-    const widthFromXCrop = horizontalRatio * cropSquareRects[0].width
-    const heightFromYCrop = verticalRatio * cropSquareRects[0].height
-    const displayX = 0
-    const displayY = 0
-    const displayWidth = 400
-    const displayHeight = 260
-    context.drawImage(image, 
-      xCrop, yCrop, 
-      widthFromXCrop, heightFromYCrop
-      , displayX, displayY
-      , displayWidth, displayHeight
-    )
-  }
+  //   const xCrop = 0
+  //   // const yCrop = origImgSquareRects[0].top + cropSquareRects[0].top 
+  //   const yCrop = Math.abs(origImgSquareRects[0].top - cropSquareRects[0].top) * verticalRatio
+  //   const widthFromXCrop = horizontalRatio * cropSquareRects[0].width
+  //   const heightFromYCrop = verticalRatio * cropSquareRects[0].height
+  //   const displayX = 0
+  //   const displayY = 0
+  //   const displayWidth = 400
+  //   const displayHeight = 260
+  //   context.drawImage(image, 
+  //     xCrop, yCrop, 
+  //     widthFromXCrop, heightFromYCrop
+  //     , displayX, displayY
+  //     , displayWidth, displayHeight
+  //   )
+  // }
 
   return (
     <div>
@@ -119,14 +115,14 @@ const PhotosEditForm = ({ formFieldValues, setFormFieldValues }: photosEditFormP
           src={thumbnailPreviewSrc}
         />
       </div>
-      <div
+      {/* <div
         style={{
           display: cropMoveable ? 'none' : ''
         }}
       >
         CROP SET <button onClick={() => cropImage() }>Create Cropped Image</button>
-      </div>
-      <div 
+      </div> */}
+      {/* <div 
         onClick={() => { setCropMoveable(!cropMoveable) }}
         id="cursor" 
         style={{
@@ -142,7 +138,7 @@ const PhotosEditForm = ({ formFieldValues, setFormFieldValues }: photosEditFormP
           top: pointerCoords.y,
           left: pointerCoords.x,
         }}
-      ></div>
+      ></div> */}
       <canvas id="cropped" width={400} height={260}>
 
       </canvas>

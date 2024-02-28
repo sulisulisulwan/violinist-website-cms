@@ -22,6 +22,9 @@ const useUserLogin = () => {
 
     if (isAuthorized) {
       setIsLoggedIn(true)
+    } else {
+      const loginMessageComponent = document.getElementById('login-message')
+      loginMessageComponent.innerHTML = 'Username or password invalid'
     }
     
   }

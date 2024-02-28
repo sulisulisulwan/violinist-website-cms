@@ -16,8 +16,6 @@ const BioEditForm = ({ formFieldValues, setFormFieldValues }: bioEditFormPropsIF
   const [ titleInputFocused, setTitleInputFocused ] = useState(false)
   const [ textareaFocused, setTextareaFocused ] = useState(false)
   
-  console.log(formFieldValues.textareaText)
-
   useTextLoader('bio', setFormFieldValues)
 
   return (

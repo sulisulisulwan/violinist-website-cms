@@ -19,8 +19,6 @@ const PlaylistsListItems = () => {
     }))
   }
 
-  console.log( globalAppState.fetchedData?.media)
-
   return (
     <>
       {

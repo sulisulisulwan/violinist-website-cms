@@ -17,7 +17,6 @@ const BlogEditForm = ({ formFieldValues, setFormFieldValues }: blogEditFormProps
   const [ titleInputFocused, setTitleInputFocused ] = useState(false)
   const [ textareaFocused, setTextareaFocused ] = useState(false)
   
-  console.log(formFieldValues.textareaText)
   useTextLoader('blog', setFormFieldValues)
 
   return (

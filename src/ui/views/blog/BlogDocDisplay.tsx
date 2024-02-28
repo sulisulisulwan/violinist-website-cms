@@ -52,7 +52,6 @@ export const formatDate = (datetime: string) => {
   const year = date.getFullYear()
   const day = date.getDate()
   const month = date.getMonth()
-  // console.log(date)
   return month + '/' + day + '/' + year
 }
 

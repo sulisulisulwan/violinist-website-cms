@@ -19,7 +19,6 @@ const AudioListItems = () => {
     }))
   }
 
-  console.log(audio)
   return (
     <div>{ audio.length ? audio.map((audioTrack, index: number) => {
       return (

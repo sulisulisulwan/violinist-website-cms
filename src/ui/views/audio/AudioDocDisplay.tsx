@@ -1,8 +1,11 @@
 import * as React from 'react'
+import config from '../../../../config'
 
 interface audioDocDisplayPropsIF {
   chosenDocData: any
 }
+
+
 
 const AudioDocDisplay = ({ chosenDocData }: audioDocDisplayPropsIF) => {
 
@@ -13,7 +16,7 @@ const AudioDocDisplay = ({ chosenDocData }: audioDocDisplayPropsIF) => {
       margin: 10
     }}>
       <div>
-        <audio controls src={`http://localhost:1337/v1/media/audio?id=${chosenDocData.id}`}/>
+        <audio controls src={`${config.BACKEND_API_BASE_URL}/media/audio?id=${chosenDocData.id}`}/>
       </div>
       <div>
         <span style={{ fontWeight: 'bold' }}>Author: </span>
