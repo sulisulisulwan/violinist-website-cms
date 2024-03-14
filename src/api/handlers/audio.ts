@@ -16,12 +16,12 @@ export const audioApiHandler = async (
   let url 
 
   if (['POST'].includes(method)) {
-    url = `${BACKEND_API_BASE_URL}/media/audio${query ? query : ''}`
+    url = `${BACKEND_API_BASE_URL}/audio${query ? query : ''}`
   }
 
-  if (method === 'GET') url = `${BACKEND_API_BASE_URL}/media${query ? query : ''}`
+  if (method === 'GET') url = `${BACKEND_API_BASE_URL}/audio${query ? query : ''}`
 
-  if (['DELETE','PATCH'].includes(method)) url = `${BACKEND_API_BASE_URL}/media/audio${query ? query : ''}`
+  if (['DELETE','PATCH'].includes(method)) url = `${BACKEND_API_BASE_URL}/audio${query ? query : ''}`
   
   const result = await fetcher(url, data as AxiosRequestConfig)
   return result

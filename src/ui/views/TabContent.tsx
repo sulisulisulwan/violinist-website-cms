@@ -46,6 +46,7 @@ const TabContent = ({ state, setState }: tabContentPropsIF) => {
     : <DocList listItemsComponent={ listItemsMap[currentTab] }/> // display a list
 
 
+
   return (
     <div 
       className="dashboard-content-wrapper"

@@ -16,10 +16,10 @@ export const videosApiHandler = async (
 
   let url 
 
-  if (method === 'POST') url = `${BACKEND_API_BASE_URL}/media/videos${query ? query : ''}`
-  if (method === 'GET') url = `${BACKEND_API_BASE_URL}/media${query ? query : ''}`
-  if (method === 'GET' && query) url = `${BACKEND_API_BASE_URL}/media/videos${query ? query : ''}`
-  if (['DELETE','PATCH'].includes(method)) url = `${BACKEND_API_BASE_URL}/media/videos${query ? query : ''}`
+  if (method === 'POST') url = `${BACKEND_API_BASE_URL}/videos${query ? query : ''}`
+  if (method === 'GET') url = `${BACKEND_API_BASE_URL}/videos${query ? query : ''}`
+  if (method === 'GET' && query) url = `${BACKEND_API_BASE_URL}/videos${query ? query : ''}`
+  if (['DELETE','PATCH'].includes(method)) url = `${BACKEND_API_BASE_URL}/videos${query ? query : ''}`
 
   const result = await fetcher(url, data as AxiosRequestConfig)
   return result
