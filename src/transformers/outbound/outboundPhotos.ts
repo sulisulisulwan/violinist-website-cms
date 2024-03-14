@@ -8,12 +8,14 @@ export const photosOutboundTransformer = (formFieldValues: photosFormFieldStateI
   
     transformed.append('photoCred', formFieldValues.photoCred)
     transformed.append('id', docId ? docId.toString() : null) // <--- WATCH OUT
+    transformed.append('type', 'media-photo')
     return transformed
   }
 
   const transformed = {
     id: docId,
     photoCred: formFieldValues.photoCred,
+    type: 'media-photo'
   }
 
   return transformed
