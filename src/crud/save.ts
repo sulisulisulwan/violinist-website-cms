@@ -2,7 +2,7 @@ import { apiResourceHandlersMap } from "../api"
 import { validatorMap } from "../formValidators"
 import { outboundTransformerMap } from "../transformers/transformers"
 import { inboundTransformerMap } from "../transformers/transformers"
-import { fetchedDataForCMS, initStateIF, initialFormStates, setStateSSA } from 'suli-violin-website-types/src'
+import { initStateIF, initialFormStates, setStateSSA } from 'suli-violin-website-types/src'
 
 export const saveDocument = async (state: initStateIF, setState: setStateSSA, formFieldValues: initialFormStates) => {
 
@@ -46,36 +46,17 @@ export const saveDocument = async (state: initStateIF, setState: setStateSSA, fo
     : insertId
 
     //CLEAN UP AND UPDATE
-    setState((prevState) => {
-
-      const newFetchedDataState = {
-        ...prevState.fetchedData,
-        media: {
-          ...prevState.fetchedData.media
-        }
-      }
-
-      if (['bio', 'calendar', 'blog'].includes(state.currentTab)) {
-        newFetchedDataState[state.currentTab as keyof fetchedDataForCMS] = transformedInboundData
-      } else if (['audio', 'videos', 'photos'].includes(state.currentTab)) {
-        newFetchedDataState.media[state.currentTab] = transformedInboundData[state.currentTab]
-      } else if (state.currentTab === 'playlists') {
-        newFetchedDataState.media[state.currentTab] = transformedInboundData
-      }
-
-
-      return { 
-        ...prevState, 
-        modal: {
-          isOpen: false,
-          type: ''
-        },
-        currWorkflow: transferDocFromDisplay ? 'loadText' : state.currWorkflow,
-        editDocId,
-        displayDocId: null,
-        fetchedData: newFetchedDataState
-      }
-    })
+    setState((prevState) => ({ 
+      ...prevState, 
+      modal: {
+        isOpen: false,
+        type: ''
+      },
+      currWorkflow: transferDocFromDisplay ? 'loadText' : state.currWorkflow,
+      editDocId,
+      displayDocId: null,
+      fetchedData: transformedInboundData
+    }))
 
   } catch(e) {
     console.log(e)

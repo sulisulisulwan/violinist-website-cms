@@ -11,8 +11,8 @@ const BioDocListItems = () => {
   
   const [ state, setState ] = useContext(GlobalAppStateManagement)
   
-  const biosData = state.fetchedData.bio
-  if (!biosData) return null
+  const biosData = state.fetchedData
+  if (!biosData || biosData.dataType !== 'bio') return null
 
   const setLongFormClickHandler = async (id: number, ) => {
     try {

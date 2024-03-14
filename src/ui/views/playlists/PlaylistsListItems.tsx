@@ -8,8 +8,8 @@ const PlaylistsListItems = () => {
   
   const [ globalAppState, setGlobalAppState ] = useContext(GlobalAppStateManagement)
   
-  const playlistsData = globalAppState.fetchedData?.media?.playlists
-  if (!playlistsData) return null
+  const playlistsData = globalAppState.fetchedData
+  if (!playlistsData || playlistsData.dataType !== 'playlists') return null
 
   const deleteClickHandler = async(id: number) => {
     setGlobalAppState((prevState) => ({ 
@@ -22,7 +22,7 @@ const PlaylistsListItems = () => {
   return (
     <>
       {
-        playlistsData.map((playlistData: PlaylistItemAPI, index: number) => 
+        playlistsData.results.playlists.map((playlistData: PlaylistItemAPI, index: number) => 
           <li 
             key={'' + playlistData.id + index}
             style={{

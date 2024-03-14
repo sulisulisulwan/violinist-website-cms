@@ -11,7 +11,7 @@ const videosTextLoader = (state: initStateIF, setState: setStateSSA, setFormFiel
         const form = getInitFormFieldsState('videos')
         setFormFieldValues(form as videosFormFieldStateIF)
       } else {
-        const targetDoc = state.fetchedData.media.videos.find((video: VideoDataAPI) => state.editDocId === video.id )
+        const targetDoc = state.fetchedData.results.find((video: VideoDataAPI) => state.editDocId === video.id )
         setFormFieldValues(() => ({
           thumbnailUploadPath: {
             currPref: 'saved',

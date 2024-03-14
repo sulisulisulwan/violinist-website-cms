@@ -8,8 +8,8 @@ const { useContext } = React
 const BlogListItems = () => {
 
   const [ globalAppState, setGlobalAppState ] = useContext(GlobalAppStateManagement)
-  const blogsData = globalAppState.fetchedData.blog
-  if (!blogsData) return null
+  const blogsData = globalAppState.fetchedData
+  if (!blogsData || blogsData.dataType !== 'blogs') return null
 
   const deleteClickHandler = async(id: number) => {
     setGlobalAppState((prevState: any) => ({ 

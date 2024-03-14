@@ -8,8 +8,8 @@ const AudioListItems = () => {
 
   const [ state, setState ] = useContext(GlobalAppStateManagement)
 
-  const audio: AudioTrackDataAPI[] = state.fetchedData?.media?.audio
-  if (!audio) return null
+  const audio: { dataType: 'audio', results: AudioTrackDataAPI[] }= state.fetchedData
+  if (!audio || audio.dataType !== 'audio') return null
 
   const deleteClickHandler = (id: number) => {
     setState((prevState) => ({ 
@@ -20,7 +20,7 @@ const AudioListItems = () => {
   }
 
   return (
-    <div>{ audio.length ? audio.map((audioTrack, index: number) => {
+    <div>{ audio.results.length ? audio.results.map((audioTrack, index: number) => {
       return (
         <div 
           key={index}

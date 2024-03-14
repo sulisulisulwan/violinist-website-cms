@@ -6,7 +6,7 @@ const blogTextLoader = (state: initStateIF, setState: setStateSSA, setFormFieldV
     if (state.currWorkflow === 'loadText') {
       const targetDoc = state.editDocId === null ? 
           { title: '', components: [], dateCreated: '', dateLastModified: '' } 
-        : state.fetchedData.blog.results.find((doc: BlogItemAPI) => state.editDocId === doc.id)
+        : state.fetchedData.results.find((doc: BlogItemAPI) => state.editDocId === doc.id)
 
       const loadText = targetDoc.components.reduce((memo: string, component: ParsedHTMLComponent) => {
         let componentText = ''

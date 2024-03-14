@@ -4,7 +4,9 @@ import { AxiosResponse } from "axios"
 
 export const calendarInboundTransformer = (apiData: AxiosResponse): CalendarInboundTransformedData => {
 
-  const transformed: CalendarInboundTransformedData = {
+  
+  const transformed:CalendarInboundTransformedData = {
+    dataType: 'calendar',
     results: {
       upcoming: [],
       past: []
@@ -55,5 +57,7 @@ export const calendarInboundTransformer = (apiData: AxiosResponse): CalendarInbo
     })
     
   }
+  console.log(transformed)
+
   return transformed
 }

@@ -8,7 +8,7 @@ const photosTextLoader = (state: initStateIF, setState: setStateSSA, setFormFiel
 
       const targetDoc = state.editDocId === null ? 
         getInitFormFieldsState('photos')
-        : state.fetchedData.media.photos.find((photo: PhotoDataAPI) => {
+        : state.fetchedData.results.find((photo: PhotoDataAPI) => {
           return state.editDocId === photo.id
         })
         

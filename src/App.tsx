@@ -6,7 +6,8 @@ import useUserLogin from './useUserLogin'
 const App = () => {
 
   const { isLoggedIn, onSubmitHandler } = useUserLogin()
-  return (isLoggedIn ? <Cms/> : <LoginPage onSubmitHandler={onSubmitHandler}/>)
+  // return (isLoggedIn ? <Cms/> : <LoginPage onSubmitHandler={onSubmitHandler}/>)
+  return <Cms/>
  
 }
 

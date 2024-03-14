@@ -1,23 +1,26 @@
 import * as React from 'react'
 import ListButton from '../../sharedComponents/ListButton'
 import { GlobalAppStateManagement } from '../../../Cms'
-import { CMSEventGroupDateRange, CalendarInboundTransformedData, InboundEventGroup, initStateIF, setStateSSA } from 'suli-violin-website-types/src'
+import { CMSEventGroupDateRange, InboundEventGroup, initStateIF, setStateSSA } from 'suli-violin-website-types/src'
 const { useContext } = React
 
 const CalendarListItems = () => {
   
   const [ state, setState ] = useContext(GlobalAppStateManagement)
-  const data: CalendarInboundTransformedData = state.fetchedData.calendar
-  const calendarData =  data.results
+  const { fetchedData } = state 
+  if (!fetchedData || fetchedData.dataType !== 'calendar') {
+    return null
+  }
+
+  const calendarData =  fetchedData.results
   
-  if (!calendarData) return null
 
   return (
     <>
       <div>
         <h3>UPCOMING EVENTS</h3>
         {
-          calendarData.upcoming.map((eventGroupData, index: number) => {
+          calendarData.upcoming.map((eventGroupData: any, index: number) => {
             const { startIcon, endIcon } = parseDateToIcon(eventGroupData.dateRange)
             return <CalListItem 
               key={'' + eventGroupData.id + index}

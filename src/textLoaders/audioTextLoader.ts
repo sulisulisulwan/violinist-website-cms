@@ -10,7 +10,7 @@ const audioTextLoader = (state: initStateIF, setState: setStateSSA, setFormField
       
       const targetDoc = state.editDocId === null ? 
         getInitFormFieldsState('audio')
-        : state.fetchedData.media.audio.find((audioTrack: AudioTrackDataAPI) => {
+        : state.fetchedData.results.find((audioTrack: AudioTrackDataAPI) => {
           return state.editDocId === audioTrack.id
         })
         

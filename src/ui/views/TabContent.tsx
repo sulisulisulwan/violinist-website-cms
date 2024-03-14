@@ -27,10 +27,19 @@ interface tabContentPropsIF {
 
 const TabContent = ({ state, setState }: tabContentPropsIF) => {
 
+  if (state.fetchedData === null) return null
 
-  const { currentTab, displayDocId, fetchedData } = state
+  const { 
+    currentTab, 
+    displayDocId, 
+    fetchedData
+  } = state
 
-  let chosenDocData = useGetChosenDocData(fetchedData, currentTab, displayDocId)
+  let chosenDocData = useGetChosenDocData(
+    fetchedData, 
+    currentTab, 
+    displayDocId
+  )
 
   const savedDocChildren = displayDocId ? 
       docDisplayMap[currentTab]({ chosenDocData }) // display a specific doc

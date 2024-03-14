@@ -24,8 +24,12 @@ export const playlistsApiHandler = async (
   if (method === 'GET') url = `${BACKEND_API_BASE_URL}/media${query ? query : ''}`
   if (method === 'GET' && query) url = `${BACKEND_API_BASE_URL}/media/audio/playlists${query ? query : ''}`
 
-  const result = await fetcher(`${BACKEND_API_BASE_URL}/media/audio/playlists${query ? query : ''}`, data as AxiosRequestConfig)
-  return result
+  const playlistsResponse = await fetcher(`${BACKEND_API_BASE_URL}/media/audio/playlists${query ? query : ''}`, data as AxiosRequestConfig)
+  const audioResponse = await fetcher(`${BACKEND_API_BASE_URL}/media/audio`, data as AxiosRequestConfig)
+  return {
+    playlistsResponse,
+    audioResponse
+  }
 }
 
 const validMethodsMap = new Map([

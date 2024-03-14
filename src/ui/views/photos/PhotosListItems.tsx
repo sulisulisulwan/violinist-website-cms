@@ -8,7 +8,7 @@ const { useContext } = React
 const PhotosListItems = () => {
 
   const [ state, setState ] = useContext(GlobalAppStateManagement)
-  const photos: PhotoDataAPI[] = state.fetchedData?.media?.photos
+  const photos: { dataType: 'photos', results: PhotoDataAPI[]} = state.fetchedData
 
   const deleteClickHandler = (id: number) => {
     setState((prevState) => ({ 
@@ -18,10 +18,10 @@ const PhotosListItems = () => {
     }))
   }
 
-  if (!photos) return null
+  if (!photos || photos.dataType !== 'photos') return null
   
   return (
-    <div>{ photos.length ? photos.map((photo, index: number) => {
+    <div>{ photos.results.length ? photos.results.map((photo, index: number) => {
       return (
         <div 
           key={index}

@@ -8,8 +8,8 @@ const calendarTextLoader = (state: initStateIF, setState: setStateSSA, setFormFi
       const targetDoc = state.editDocId === null ? 
         getInitFormFieldsState('calendar') 
         : (
-            state.fetchedData.calendar.results.upcoming.find((doc: EventGroupAPI) => state.editDocId === doc.id) 
-            || (state.fetchedData.calendar.results.past.find((doc: EventGroupAPI) => state.editDocId === doc.id) )
+            state.fetchedData.results.upcoming.find((doc: EventGroupAPI) => state.editDocId === doc.id) 
+            || (state.fetchedData.results.past.find((doc: EventGroupAPI) => state.editDocId === doc.id) )
           )
       setFormFieldValues(targetDoc)
       setState((prevState) => ({ ...prevState, currWorkflow: '' }))

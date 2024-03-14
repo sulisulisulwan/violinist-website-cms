@@ -20,7 +20,7 @@ export const photosApiHandler = async (
     url = `${BACKEND_API_BASE_URL}/media/photos${query ? query : ''}`
   }
 
-  if (method === 'GET') url = `${BACKEND_API_BASE_URL}/media${query ? query : ''}`
+  if (method === 'GET') url = `${BACKEND_API_BASE_URL}/media/photos?type=media-photo${query ? query : ''}`
   if (method === 'GET' && query) url = `${BACKEND_API_BASE_URL}/media/photos${query ? query : ''}`
 
   if (['DELETE','PATCH'].includes(method)) url = `${BACKEND_API_BASE_URL}/media/photos${query ? query : ''}`

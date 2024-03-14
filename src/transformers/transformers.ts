@@ -12,17 +12,21 @@ import { blogOutboundTransformer } from './outbound/outboundBlog'
 import { blogInboundTransformer } from './inbound/inboundBlog'
 import { playlistOutboundTransformer } from './outbound/outboundPlaylists'
 import { OutboundTransformer } from 'suli-violin-website-types/src'
+import { audioInboundTransformer } from './inbound/inboundAudio'
+import { videosInboundTransformer } from './inbound/inboundVideos'
+import { photosInboundTransformer } from './inbound/inboundPhotos'
+import { playlistsInboundTransformer } from './inbound/inboundPlaylists'
 
 
 export const inboundTransformerMap: Record<string, Function> = {
-  audio: mediaInboundTransformer,
+  audio: audioInboundTransformer,
   bio: bioInboundTransformer,
   blog: blogInboundTransformer,
   calendar: calendarInboundTransformer,
   media: mediaInboundTransformer,
-  videos: mediaInboundTransformer,
-  playlists: mediaInboundTransformer,
-  photos: mediaInboundTransformer,
+  videos: videosInboundTransformer,
+  playlists: playlistsInboundTransformer,
+  photos: photosInboundTransformer,
 }
 
 export const outboundTransformerMap: Record<string, OutboundTransformer> = {

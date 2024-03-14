@@ -17,7 +17,8 @@ const PlaylistsEditForm = ({ formFieldValues, setFormFieldValues }: playListsEdi
   const { moveTrack, removeTrack } = useTrackPositionControls(formFieldValues, setFormFieldValues)
 
   const findAudioTrackById = (audioId: number): AudioTrackDataAPI => {
-    return globalAppState.fetchedData?.media?.audio.find((audioTrackData: AudioTrackDataAPI) => audioId === audioTrackData.id) || null
+    
+    return globalAppState.fetchedData?.results?.find((audioTrackData: AudioTrackDataAPI) => audioId === audioTrackData.id) || null
   }
 
   return (
@@ -104,7 +105,7 @@ const AvailableTracks = ({ globalAppState, setFormFieldValues }: availableTracks
     >
       <div>AVAILABLE TRACKS</div>
       { 
-        globalAppState.editFieldsEnabled ? globalAppState.fetchedData?.media?.audio.map((audioTrackData: AudioTrackDataAPI, index: number) => {
+        globalAppState.editFieldsEnabled ? globalAppState.fetchedData?.results.audio.map((audioTrackData: AudioTrackDataAPI, index: number) => {
 
         return (
           <div 

@@ -8,6 +8,7 @@ import { mediaApiHandler } from './api/handlers/media'
 import { inboundTransformerMap } from './transformers/transformers'
 import { blogApiHandler } from './api/handlers/blog'
 import { initStateIF, setStateSSA, tabListItemIF } from 'suli-violin-website-types/src'
+import { apiResourceHandlersMap } from './api'
 
 const initialState: initStateIF = {
   currentTab: 'bio',
@@ -16,12 +17,7 @@ const initialState: initStateIF = {
   currWorkflow: '',
   editFieldsEnabled: false,
   editDocId: null,
-  fetchedData: {
-    bio: null,
-    calendar: null,
-    media: null,
-    blog: null,
-  },
+  fetchedData: null,
   isDeletePhase: false,
   modal: {
     isOpen: false,
@@ -77,30 +73,21 @@ const Cms = () => {
   }
 
   useEffect(() => {
-    async function getData() {
-      const aboutData = await bioApiHandler('GET')
-      const calendarData = await calendarApiHandler('GET')
-      const mediaData = await mediaApiHandler('GET')
-      const blogData = await blogApiHandler('GET')
-
-      const bioTransformer = inboundTransformerMap['bio']
-      const calendarTransformer = inboundTransformerMap['calendar']
-      const mediaTransformer = inboundTransformerMap['media']
-      const blogTransformer = inboundTransformerMap['blog']
-  
-      const newData = {
-        bio: bioTransformer(aboutData),
-        calendar: calendarTransformer(calendarData),
-        media: mediaTransformer(mediaData),
-        blog: blogTransformer(blogData),
-      }
-
-      setState((prevState) => ({ ...prevState, fetchedData: newData }))
+    const getData = async () => {
+      const apiHandler = apiResourceHandlersMap[state.currentTab]
+      const inboundTransformer = inboundTransformerMap[state.currentTab]
+      const data = await apiHandler('GET')
+      const transformed = inboundTransformer(data)
+      setState((prevState) => ({
+        ...prevState,
+        fetchedData: transformed
+      }))
+      console.log(transformed)
     }
 
-    getData()
 
-  }, [])
+    getData()
+  }, [state.currentTab])
 
   return (
     <GlobalAppStateManagement.Provider value={[state, setState]}>

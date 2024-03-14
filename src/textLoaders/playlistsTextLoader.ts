@@ -10,7 +10,7 @@ const playlistsTextLoader = (state: initStateIF, setState: setStateSSA, setFormF
       if (state.editDocId === null) {
         newState = getInitFormFieldsState('playlists') as playlistFormFieldStateIF
       } else {
-        const targetDoc = state.fetchedData.media.playlists.find((doc: PlaylistItemAPI) => state.editDocId === doc.id)
+        const targetDoc = state.fetchedData.results.find((doc: PlaylistItemAPI) => state.editDocId === doc.id)
         newState = {
           name: targetDoc.name,
           playlistTracks: targetDoc.playlistTracks.map((track: PlaylistTrackAPI) => ({ id: track.id, audioTrackId: track.audioTrackId }))

@@ -2,6 +2,7 @@ import { AxiosResponse } from "axios"
 import { BlogItemAPI } from 'suli-violin-website-types/src'
 
 export type blogInboundTransformedData = {
+  dataType: 'blog'
   results: BlogItemAPI[]
 }
 
@@ -17,5 +18,8 @@ export const blogInboundTransformer = (apiData: AxiosResponse): blogInboundTrans
     }
   })
 
-  return { results: transformed }
+  return { 
+    dataType: 'blog',
+    results: transformed 
+  }
 }

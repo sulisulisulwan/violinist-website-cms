@@ -9,8 +9,8 @@ const VideosListItems = () => {
 
   const [ state, setState ] = useContext(GlobalAppStateManagement)
 
-  const videos: VideoDataAPI[] = state.fetchedData?.media?.videos
-  if (!videos) return null
+  const videos: { dataType: 'videos', results: VideoDataAPI[]} = state.fetchedData
+  if (!videos || videos.dataType !== 'videos') return null
   
   const deleteClickHandler = (id: number) => {
     setState((prevState) => ({ 
@@ -22,7 +22,7 @@ const VideosListItems = () => {
 
 
   return (
-    <div>{ videos.length ? videos.map((video, index: number) => {
+    <div>{ videos.results.length ? videos.results.map((video, index: number) => {
       return (
         <div 
           key={index}
