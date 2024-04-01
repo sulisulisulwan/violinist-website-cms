@@ -45,8 +45,6 @@ const TabContent = ({ state, setState }: tabContentPropsIF) => {
       docDisplayMap[currentTab]({ chosenDocData }) // display a specific doc
     : <DocList listItemsComponent={ listItemsMap[currentTab] }/> // display a list
 
-
-
   return (
     <div 
       className="dashboard-content-wrapper"
