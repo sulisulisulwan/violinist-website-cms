@@ -16,7 +16,9 @@ interface photosEditFormPropsIF {
 
 const PhotosEditForm = ({ formFieldValues, setFormFieldValues }: photosEditFormPropsIF) => {
   
-  const [ globalAppState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ globalAppState ] = appStateManagement
+  
   const formRef = useRef(null)
   const imgRef = useRef(null)
   

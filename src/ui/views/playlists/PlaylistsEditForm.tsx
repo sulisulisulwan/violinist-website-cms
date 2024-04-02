@@ -12,7 +12,9 @@ interface playListsEditFormPropsIF {
 
 const PlaylistsEditForm = ({ formFieldValues, setFormFieldValues }: playListsEditFormPropsIF) => {
 
-  const [ globalAppState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ globalAppState ] = appStateManagement
+  
   useTextLoader('playlists', setFormFieldValues)
   const { moveTrack, removeTrack } = useTrackPositionControls(formFieldValues, setFormFieldValues)
 

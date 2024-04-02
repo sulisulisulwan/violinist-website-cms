@@ -12,7 +12,8 @@ interface blogEditFormPropsIF {
 }
 
 const BlogEditForm = ({ formFieldValues, setFormFieldValues }: blogEditFormPropsIF) => {
-  const [ globalAppState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ globalAppState ] = appStateManagement
 
   const [ titleInputFocused, setTitleInputFocused ] = useState(false)
   const [ textareaFocused, setTextareaFocused ] = useState(false)
@@ -20,12 +21,14 @@ const BlogEditForm = ({ formFieldValues, setFormFieldValues }: blogEditFormProps
   useTextLoader('blog', setFormFieldValues)
 
   return (
-    <div>
+    <div style={{
+      height: '100%'
+    }}>
       <div style={{
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        height: 20
       }}>
-
         {
           !formFieldValues.dateCreated ? null :
           <span style={{ color: 'gray' }}>Date Created: {formatDate(formFieldValues.dateCreated)}</span>
@@ -63,8 +66,8 @@ const BlogEditForm = ({ formFieldValues, setFormFieldValues }: blogEditFormProps
         id="blog-entry-edit-form-content"
         style={{
           width: '95%',
+          height: 'calc(100% - 150px)',
           background: textareaFocused ? 'aliceBlue' : 'whitesmoke',
-          height: '300px',
           fontFamily: 'Arial',
           fontSize: '15px',
           outline: titleInputFocused ? 'none' : 'none',

@@ -1,12 +1,14 @@
 import * as React from 'react'
-import ListButton from '../../sharedComponents/ListButton'
+import ListButton from '../sharedComponents/ListButton'
 import { GlobalAppStateManagement } from '../../../Cms'
 import { AudioTrackDataAPI } from 'suli-violin-website-types/src'
+import HoveringDiv from '../blog/HoveringDiv'
 const { useContext } = React
 
 const AudioListItems = () => {
 
-  const [ state, setState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ state, setState ] = appStateManagement
 
   const audio: { dataType: 'audio', results: AudioTrackDataAPI[] }= state.fetchedData
   if (!audio || audio.dataType !== 'audio') return null
@@ -33,48 +35,43 @@ const AudioListItems = () => {
             justifyContent: 'space-between'
           }}
         >
-          <div style={{display: 'flex', flexDirection: 'column'}}>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>Author: </span>
-              <span
-                style={{
-                  fontSize: 17,
-                  // fontWeight: 600
-                }}
-              >{' ' + audioTrack.author}</span>
+          <HoveringDiv stylesOverride={{ width: '100%' }}>
+            <div 
+              style={{
+                display: 'flex', 
+                flexDirection: 'column',
+                width: '100%'
+              }}
+              onClick={(e) => { setState((prevState) => ({ ...prevState, displayDocId: audioTrack.id }))} }
+            >
+              <div>
+                <span style={{ fontWeight: 'bold' }}>Author: </span>
+                <span
+                  style={{
+                    fontSize: 17,
+                    // fontWeight: 600
+                  }}
+                >{' ' + audioTrack.author}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>Title: </span>
+                <span
+                  style={{
+                    fontSize: 17  
+                  }}
+                >{audioTrack.title}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>Filename: </span>
+                <span
+                  style={{
+                    fontSize: 17  
+                  }}
+                >{audioTrack.originalFileName}</span>
+              </div>
             </div>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>Title: </span>
-              <span
-                style={{
-                  fontSize: 17  
-                }}
-              >{audioTrack.title}</span>
-            </div>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>Filename: </span>
-              <span
-                style={{
-                  fontSize: 17  
-                }}
-              >{audioTrack.originalFileName}</span>
-            </div>
-          </div>
+          </HoveringDiv>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <ListButton 
-              isDisabled={false} 
-              text='DISPLAY' 
-              onClickHandler={(e) => { setState((prevState) => ({ ...prevState, displayDocId: audioTrack.id }))} }/>
-            <ListButton
-              isDisabled={state.editDocId === audioTrack.id}
-              text={'EDIT'}
-              onClickHandler={() => { setState((prevState) => ({ 
-                ...prevState, 
-                editDocId: audioTrack.id,
-                displayDocId: audioTrack.id,
-                currWorkflow: 'edit',
-              })) }}
-            />
             <ListButton 
               isDisabled={false} 
               text='DELETE' 

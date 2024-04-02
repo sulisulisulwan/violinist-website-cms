@@ -11,8 +11,12 @@ const BioDocDisplay = ({ chosenDocData }: bioDocDisplayPropsIF) => {
     <div 
       className="bio-document-display"
       style={{
-        width: '100%',
-        paddingLeft: '10px'
+        marginTop: 10,
+        marginBottom: 20,
+        paddingLeft: 10,
+        height: 'calc(100% - 30px)',
+        width: 'calc(100% - 15px)',
+        overflow: 'scroll'
       }}
     >
       { chosenDocData.components.map((component: any, index: number) => {

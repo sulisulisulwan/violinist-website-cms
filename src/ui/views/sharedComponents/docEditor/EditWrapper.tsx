@@ -1,27 +1,27 @@
 import * as React from 'react'
 import { useContext } from 'react'
 import { useWorkflowManager } from './hooks/useWorkflowManager'
-import { saveDocument } from '../../../crud/save'
-import { createNewDocument } from '../../../crud/create'
+import { saveDocument } from '../../../../crud/save'
 
-import BioEditForm from '../../views/biography/BioEditForm'
-import CalendarEditForm from '../../views/calendar/CalendarEditForm'
+import BioEditForm from '../../biography/BioEditForm'
+import CalendarEditForm from '../../calendar/CalendarEditForm'
 
 import ListButton from '../ListButton'
 import ModalWrapper from '../modals/ModalWrapper'
 import SaveModal from '../modals/SaveModal'
 import DeleteModal from '../modals/DeleteModal'
-import { GlobalAppStateManagement } from '../../../Cms'
-import BlogEditForm from '../../views/blog/BlogEditForm'
-import PhotosEditForm from '../../views/photos/PhotosEditForm'
-import VideosEditForm from '../../views/videos/VideosEditForm'
-import AudioEditForm from '../../views/audio/AudioEditForm'
+import { GlobalAppStateManagement } from '../../../../Cms'
+import BlogEditForm from '../../blog/BlogEditForm'
+import PhotosEditForm from '../../photos/PhotosEditForm'
+import VideosEditForm from '../../videos/VideosEditForm'
+import AudioEditForm from '../../audio/AudioEditForm'
 import { useFormInitializer } from './hooks/useFormInitializer'
-import PlaylistsEditForm from '../../views/playlists/PlaylistsEditForm'
-import { audioFormFieldStateIF, bioFormFieldStateIF, blogFormFieldStateIF, calendarFormFieldStateIF, formTypes, photosFormFieldStateIF, playlistFormFieldStateIF, videosFormFieldStateIF } from 'suli-violin-website-types/src'
+import PlaylistsEditForm from '../../playlists/PlaylistsEditForm'
+import { audioFormFieldStateIF, bioFormFieldStateIF, blogFormFieldStateIF, calendarFormFieldStateIF, formTypes, initStateIF, photosFormFieldStateIF, playlistFormFieldStateIF, videosFormFieldStateIF } from 'suli-violin-website-types/src'
 
 const EditorWrapper = () => {
-  const [ globalAppState, setGlobalAppState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ globalAppState, setGlobalAppState ] = appStateManagement
   const { currentTab } = globalAppState
   
   const [ currFormType, formFieldValues, setFormFieldValues ] = useFormInitializer(currentTab as formTypes)
@@ -35,6 +35,7 @@ const EditorWrapper = () => {
         outline: '2px gainsboro outset',
         margin: '10px',
         padding: '5px',
+        height: 'calc(100% - 30px)'
       }}
     >
       <div 
@@ -42,7 +43,8 @@ const EditorWrapper = () => {
         style={{
           background: 'white',
           display: 'flex',
-          marginRight: '20px'
+          marginRight: 20,
+          height: 62
         }}
       >
         <nav>
@@ -55,13 +57,13 @@ const EditorWrapper = () => {
             }}
           >
             <ListButton
-              text={'NEW'}
-              onClickHandler={ () => createNewDocument(globalAppState, setGlobalAppState) }
-              isDisabled={false}
-            />
-            <ListButton
               text={'SAVE'}
               onClickHandler={ () => saveDocument(globalAppState, setGlobalAppState, formFieldValues) }
+              isDisabled= { globalAppState.editFieldsEnabled ? false : true }
+            />
+            <ListButton
+              text={'CLOSE'}
+              onClickHandler={ () => setGlobalAppState((pS: initStateIF) => ({ ...pS, editDocId: null, currWorkflow: '', editFieldsEnabled: false, displayDocId: null })) }
               isDisabled= { globalAppState.editFieldsEnabled ? false : true }
             />
             <div
@@ -79,7 +81,12 @@ const EditorWrapper = () => {
           </ul>
         </nav>
       </div>
-      <div className="edit-main">
+      <div 
+        className="edit-main"
+        style={{
+          height: '100%'
+        }}
+      >
         { 
           currFormType !== currentTab ? null
             : currentTab === 'audio' ? <AudioEditForm formFieldValues={formFieldValues as audioFormFieldStateIF} setFormFieldValues={setFormFieldValues}/>

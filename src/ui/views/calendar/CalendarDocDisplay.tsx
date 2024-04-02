@@ -31,7 +31,9 @@ const CalendarDocDisplay = ({ chosenDocData }: calendarDocDisplayPropsIF) => {
     <div 
       className="calendar-document-display"
       style={{
-        paddingLeft: '10px'
+        paddingLeft: '10px',
+        height: 'calc(100% - 30px)',
+        overflow: 'scroll'
       }}
     >
       <div style={listStyle}>

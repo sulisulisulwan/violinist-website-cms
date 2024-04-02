@@ -2,7 +2,7 @@ import * as React from 'react'
 const { useContext } = React
 import * as ReactDom from 'react-dom'
 import CloseButton from '../CloseButton'
-import { GlobalAppStateManagement } from '../../../Cms'
+import { GlobalAppStateManagement } from '../../../../Cms'
 
 interface modalWrapperPropsIF {
   children: React.ReactNode
@@ -11,7 +11,8 @@ interface modalWrapperPropsIF {
 
 const ModalWrapper = ({ children, isOpen }: modalWrapperPropsIF) => {
 
-  const setState = useContext(GlobalAppStateManagement)[1]
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const setState = appStateManagement[1]
 
   const closeButtonClickHandler = () => setState((prevState) => ({ 
     ...prevState, 

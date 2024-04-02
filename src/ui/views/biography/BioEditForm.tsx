@@ -11,7 +11,8 @@ interface bioEditFormPropsIF {
 
 const BioEditForm = ({ formFieldValues, setFormFieldValues }: bioEditFormPropsIF) => {
 
-  const [ globalAppState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ globalAppState ] = appStateManagement
 
   const [ titleInputFocused, setTitleInputFocused ] = useState(false)
   const [ textareaFocused, setTextareaFocused ] = useState(false)
@@ -19,8 +20,15 @@ const BioEditForm = ({ formFieldValues, setFormFieldValues }: bioEditFormPropsIF
   useTextLoader('bio', setFormFieldValues)
 
   return (
-    <div>
-      <div>
+    <div 
+      className="bio-edit-form"
+      style={{
+        height: 'calc(100% - 62px)'
+      }}
+    >
+      <div style={{
+        height: '50px'
+      }}>
         <input 
           id="bio-edit-form-title"
           style={{
@@ -47,9 +55,9 @@ const BioEditForm = ({ formFieldValues, setFormFieldValues }: bioEditFormPropsIF
       <textarea 
         id="bio-edit-form-content"
         style={{
-          width: '95%',
+          width: 'calc(100% - 5px)',
+          height: 'calc(100% - 60px)',
           background: textareaFocused ? 'aliceBlue' : 'whitesmoke',
-          height: '300px',
           fontFamily: 'Arial',
           fontSize: '15px',
           outline: titleInputFocused ? 'none' : 'none',

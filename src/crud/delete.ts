@@ -21,6 +21,7 @@ export const deleteDocument = async (state: initStateIF, setState: setStateSSA) 
         currWorkflow: 'loadText',
         editDocId,
         displayDocId: null,
+        deleteDocId: null,
         fetchedData: transformedInboundData,
         editFieldsEnabled: editDocId ? true : false,
     }))

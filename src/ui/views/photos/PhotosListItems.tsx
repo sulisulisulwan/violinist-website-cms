@@ -1,13 +1,16 @@
 import * as React from 'react'
-import ListButton from '../../sharedComponents/ListButton'
+import ListButton from '../sharedComponents/ListButton'
 import { GlobalAppStateManagement } from '../../../Cms'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
 import config from '../../../../config'
+import HoveringDiv from '../blog/HoveringDiv'
 const { useContext } = React
 
 const PhotosListItems = () => {
 
-  const [ state, setState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ state, setState ] = appStateManagement
+  
   const photos: { dataType: 'photos', results: PhotoDataAPI[]} = state.fetchedData
 
   const deleteClickHandler = (id: number) => {
@@ -31,65 +34,56 @@ const PhotosListItems = () => {
             backgroundColor: index % 2 === 0 ? 'whitesmoke' : 'white',
             cursor: 'pointer',
             display: 'flex',
-            justifyContent: 'space-between',
           }}
         >
-          <div style={{
-            display: 'flex', 
-            flexDirection: 'column',
-            
-          }}>
-            <div style={{
-              display: 'flex'
-            }}>
+          <HoveringDiv stylesOverride={{ width: '100%' }}>
+            <div 
+              style={{
+                display: 'flex', 
+                flexDirection: 'column',
+                width: '100%'
+              }}
+              onClick={(e) => { setState((prevState) => ({ ...prevState, displayDocId: photo.id }))} }
+              >
               <div style={{
-                margin: 5,
-                border: '1px solid gray'
-              }}> 
-                <img 
-                  width={80}
-                  src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${photo.id}`}
-                />
-              </div>
-              <div style={{
-                marginLeft: 10
+                display: 'flex',
               }}>
-                <div>
-                  <span style={{ fontWeight: 'bold' }}>Photo Credit: </span>
-                  <span
-                    style={{
-                      fontSize: 17,
-                      // fontWeight: 600
-                    }}
-                  >{' ' + photo.photoCred}</span>
+                <div style={{
+                  margin: 5,
+                  border: '1px solid gray'
+                }}> 
+                  <img 
+                    width={80}
+                    src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${photo.id}`}
+                  />
                 </div>
-                <div>
-                  <span style={{ fontWeight: 'bold' }}>Filename: </span>
-                  <span
-                    style={{
-                      fontSize: 17  
-                    }}
-                  >{photo.originalFileName}</span>
+                <div style={{
+                  marginLeft: 10
+                }}>
+                  <div>
+                    <span style={{ fontWeight: 'bold' }}>Photo Credit: </span>
+                    <span
+                      style={{
+                        fontSize: 17,
+                        // fontWeight: 600
+                      }}
+                    >{' ' + photo.photoCred}</span>
+                  </div>
+                  <div>
+                    <span style={{ fontWeight: 'bold' }}>Filename: </span>
+                    <span
+                      style={{
+                        fontSize: 17  
+                      }}
+                    >{photo.originalFileName}</span>
 
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+
+          </HoveringDiv>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <ListButton 
-              isDisabled={false} 
-              text='DISPLAY' 
-              onClickHandler={(e) => { setState((prevState) => ({ ...prevState, displayDocId: photo.id }))} }/>
-            <ListButton
-              isDisabled={state.editDocId === photo.id}
-              text={'EDIT'}
-              onClickHandler={() => { setState((prevState) => ({ 
-                ...prevState, 
-                editDocId: photo.id,
-                displayDocId: photo.id,
-                currWorkflow: 'edit',
-              })) }}
-            />
             <ListButton 
               isDisabled={false} 
               text='DELETE' 

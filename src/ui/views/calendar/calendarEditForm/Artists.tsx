@@ -1,8 +1,9 @@
 import * as React from 'react'
-import DivButton from '../../../sharedComponents/DivButton'
-import CloseButton from '../../../sharedComponents/CloseButton'
+import DivButton from '../../sharedComponents/DivButton'
+import CloseButton from '../../sharedComponents/CloseButton'
 import { GlobalAppStateManagement } from '../../../../Cms'
 import { calendarFormFieldStateIF } from 'suli-violin-website-types/src'
+const { useContext } = React
 
 const getNewArtistData = () => ({
   name: '',
@@ -16,7 +17,8 @@ interface artistsPropsIF {
 
 const Artists = ({ calendarFormValues, setCalendarFormValues }: artistsPropsIF) => {
 
-  const state = React.useContext(GlobalAppStateManagement)[0]
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const state = appStateManagement[0]
 
   return (
     <label  style={{

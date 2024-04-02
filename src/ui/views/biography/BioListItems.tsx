@@ -1,15 +1,17 @@
 import * as React from 'react'
-import ListButton from '../../sharedComponents/ListButton'
+import ListButton from '../sharedComponents/ListButton'
 import { bioLongFormApiHandler } from '../../../api/handlers/bioLongForm'
 import { bioApiHandler } from '../../../api/handlers/bio'
 import { GlobalAppStateManagement } from '../../../Cms'
 import { bioShortFormApiHandler } from '../../../api/handlers/bioShortForm'
 import { BiographyItemAPI} from 'suli-violin-website-types/src'
+import HoveringDiv from '../blog/HoveringDiv'
 const { useContext } = React
 
 const BioDocListItems = () => {
   
-  const [ state, setState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ state, setState ] = appStateManagement
   
   const biosData = state.fetchedData
   if (!biosData || biosData.dataType !== 'bio') return null
@@ -60,37 +62,38 @@ const BioDocListItems = () => {
         COLOR CODE:
         <span style={{ background: 'lightblue', paddingRight: 10}}>Short Form</span>
         <span style={{ background: 'lightgreen', paddingRight: 10}}>Long Form</span>
-
       </div>
       {
         biosData.results.map((bioData: BiographyItemAPI, index: number) => 
           <li 
+            className="document-item"
             key={'' + bioData.id + index}
             style={{
               padding: '5px',
               backgroundColor: bioData.id === biosData.longFormId ? 
-                'lightgreen': bioData.id === biosData.shortFormId ? 
-                'lightblue': index % 2 === 0 ? 
-                'lightGray' : 'white',
+              'lightgreen': bioData.id === biosData.shortFormId ? 
+              'lightblue': index % 2 === 0 ? 
+              'lightGray' : 'white',
               border: 'gray solid 1px',
               cursor: 'pointer',
               display: 'flex',
               justifyContent: 'space-between'
             }}
-          >
-            <div 
-              onMouseEnter={ (e: any) => { e.target.style.fontWeight = '900'}}
-              onMouseLeave={ (e: any) => { e.target.style.fontWeight = '100'}}
             >
-              {bioData.name}
-            </div>
+              <HoveringDiv stylesOverride={{ width: '100%' }}>
+                <div 
+                  style={{ width: '100%' }}
+                  onClick={(e) => { setState((prevState) => ({ ...prevState, displayDocId: bioData.id })) }}
+                >
+                  {bioData.name}
+                </div>
+              </HoveringDiv>
             <div>
               <ul style={{
                   display:'flex',
                   listStyleType: 'none',
                   padding: 0
                 }}>
-                <div>
                   <ListButton 
                     isDisabled={bioData.id === biosData.shortFormId} 
                     text={bioData.id === biosData.longFormId ? 'UNSET LONG' : 'SET LONG'}
@@ -101,29 +104,11 @@ const BioDocListItems = () => {
                     text={bioData.id === biosData.shortFormId ? 'UNSET SHORT' : 'SET SHORT'}
                     onClickHandler={ (e) => { setShortFormClickHandler(bioData.id === biosData.shortFormId ? null : bioData.id) } }
                   />
-                </div>
-                <div>
-                  <ListButton 
-                    isDisabled={false} 
-                    text='DISPLAY' 
-                    onClickHandler={(e) => { setState((prevState) => ({ ...prevState, displayDocId: bioData.id }))} }
-                  />
-                  <ListButton 
-                    isDisabled={state.editDocId !== null && state.editDocId === bioData.id }
-                    text={'EDIT'} 
-                    onClickHandler={() => { setState((prevState) => ({ 
-                      ...prevState,
-                      editDocId: bioData.id,
-                      displayDocId: bioData.id,
-                      currWorkflow: 'edit',
-                    })) }}
-                  />
                   <ListButton 
                     isDisabled={false} 
                     text='DELETE' 
                     onClickHandler={ (e) => { deleteClickHandler(bioData.id) } }
                   />
-                </div>
               </ul>
             </div>  
           </li> 

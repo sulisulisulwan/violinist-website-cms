@@ -1,7 +1,7 @@
 import * as React from 'react'
-import SelectMonth from '../../../sharedComponents/dateTimeSelects/SelectMonth'
-import SelectDay from '../../../sharedComponents/dateTimeSelects/SelectDay'
-import SelectYear from '../../../sharedComponents/dateTimeSelects/SelectYear'
+import SelectMonth from '../../sharedComponents/dateTimeSelects/SelectMonth'
+import SelectDay from '../../sharedComponents/dateTimeSelects/SelectDay'
+import SelectYear from '../../sharedComponents/dateTimeSelects/SelectYear'
 import { calendarFormFieldStateIF, initStateIF } from 'suli-violin-website-types/src'
 
 const getSetStateCallback = (

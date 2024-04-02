@@ -1,19 +1,21 @@
 import * as React from 'react'
-import ListButton from '../../sharedComponents/ListButton'
+import ListButton from '../sharedComponents/ListButton'
 import { GlobalAppStateManagement } from '../../../Cms'
 import { CMSEventGroupDateRange, InboundEventGroup, initStateIF, setStateSSA } from 'suli-violin-website-types/src'
+import HoveringDiv from '../blog/HoveringDiv'
 const { useContext } = React
 
 const CalendarListItems = () => {
   
-  const [ state, setState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ state, setState ] = appStateManagement
+  
   const { fetchedData } = state 
   if (!fetchedData || fetchedData.dataType !== 'calendar') {
     return null
   }
 
   const calendarData =  fetchedData.results
-  
 
   return (
     <>
@@ -64,7 +66,7 @@ interface callListItemPropsIF {
   index: number
 }
 
-const CalListItem = ({ eventGroupData, startIcon, endIcon, state, setState, index }: callListItemPropsIF) => {
+const CalListItem = ({ eventGroupData, startIcon, endIcon, setState, index }: callListItemPropsIF) => {
 
   return (
     <li 
@@ -75,41 +77,41 @@ const CalListItem = ({ eventGroupData, startIcon, endIcon, state, setState, inde
         border: 'gray solid 1px',
         cursor: 'pointer',
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between' 
       }}
     >
-      <div 
+      <HoveringDiv stylesOverride={{ width: '100%' }}>
+        <div 
+          style={{ 
+            display: 'flex', 
+            width: '100%'
+          }} 
+          onClick={() => { setState((prevState) => ({ ...prevState, displayDocId: eventGroupData.id }))}}
+        >
+
+          <div 
+            style={{
+              display: 'flex',
+              paddingRight: 20
+            }}
+          >
+            { startIcon }{ endIcon }
+          </div>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            <div>{ eventGroupData.type }</div>
+            <div>{ eventGroupData.presenter }</div>
+          </div>  
+        </div>
+      </HoveringDiv>
+      <ul 
         style={{
-          display: 'flex'
+          listStyleType: 'none',
+          padding: 0
         }}
       >
-        { startIcon }{ endIcon }
-      </div>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column'
-      }}>
-        <div>{ eventGroupData.type }</div>
-        <div>{ eventGroupData.presenter }</div>
-      </div>  
-      <ul style={{
-        listStyleType: 'none'
-      }}>
-        <ListButton 
-          text={'DISPLAY'} 
-          isDisabled={false}
-          onClickHandler={() => { setState((prevState) => ({ ...prevState, displayDocId: eventGroupData.id }))}}
-        />
-        <ListButton 
-          isDisabled={state.editDocId !== null && state.editDocId === eventGroupData.id }
-          text={'EDIT'} 
-          onClickHandler={() => { setState((prevState) => ({ 
-            ...prevState,
-            editDocId: eventGroupData.id,
-            displayDocId: eventGroupData.id,
-            currWorkflow: 'edit',
-          })) }}
-        />
         <ListButton 
           text={'DELETE'} 
           isDisabled={false}

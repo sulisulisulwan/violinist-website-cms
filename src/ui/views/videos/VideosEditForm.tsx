@@ -18,7 +18,8 @@ interface videosEditFormPropsIF {
 
 const VideosEditForm = ({ formFieldValues, setFormFieldValues }: videosEditFormPropsIF) => {
   const formRef = useRef(null)
-  const [ globalAppState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ globalAppState ] = appStateManagement
   const setFieldInForm = useSetFieldInForm(setFormFieldValues)
   useTextLoader('videos', setFormFieldValues)
   

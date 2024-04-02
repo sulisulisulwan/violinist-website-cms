@@ -5,13 +5,14 @@ interface listButtonPropsIF {
   text: string
   onClickHandler: React.MouseEventHandler<HTMLLIElement>
   isDisabled: boolean
+  stylesOverride?: any
 }
 
-const ListButton = ({ text, onClickHandler, isDisabled }: listButtonPropsIF) => {
+const ListButton = ({ text, onClickHandler, isDisabled, stylesOverride }: listButtonPropsIF) => {
 
   const [ hoverStyleMixin, setHoverStyleMixin ] = useState({})
 
-  const listItemStyle = {
+  const defaultListItemStyle: any = {
     display: 'flex',
     justifyContent: 'center',
     marginLeft: '10px',
@@ -19,11 +20,18 @@ const ListButton = ({ text, onClickHandler, isDisabled }: listButtonPropsIF) => 
     padding: '5px',
     backgroundColor: 'aliceBlue',
     cursor: 'pointer',
-    color: !!isDisabled ? 'gray' : 'black'
+    color: !!isDisabled ? 'gray' : 'black',
+  }
+
+  if (stylesOverride) {
+    const styleKeys = Object.keys(stylesOverride)
+    styleKeys.forEach((key: string) => {
+      defaultListItemStyle[key as keyof any] = stylesOverride[key]
+    })
   }
 
   const computedLIStyle = {
-    ...listItemStyle,
+    ...defaultListItemStyle,
     ...hoverStyleMixin
   }
 

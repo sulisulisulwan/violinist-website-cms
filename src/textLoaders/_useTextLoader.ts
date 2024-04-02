@@ -11,7 +11,8 @@ import { formFieldStates } from 'suli-violin-website-types/src'
 
 
 const useTextLoader = (tab: string, setFormFieldValues: React.Dispatch<React.SetStateAction<formFieldStates>>) => {
-  const [globalAppState, setGlobalAppState] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [globalAppState, setGlobalAppState] = appStateManagement
   const textLoader = textLoaderMap[tab]
   textLoader(globalAppState, setGlobalAppState, setFormFieldValues)
 }
