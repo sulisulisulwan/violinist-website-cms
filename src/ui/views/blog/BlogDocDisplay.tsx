@@ -11,6 +11,7 @@ const BlogDocDisplay = ({ chosenDocData }: blogDocDisplayPropsIF) => {
       className="blog-document-display"
       style={{
         width: '100%',
+        height: '100%',
       }}
     >
       <div style={{
@@ -19,7 +20,8 @@ const BlogDocDisplay = ({ chosenDocData }: blogDocDisplayPropsIF) => {
       }}>
         <div style={{
           paddingTop: 10,
-          paddingLeft: 10
+          paddingLeft: 10,
+          height: 25
         }}>
           <span style={{ fontWeight: 900 }}>Title: </span>{chosenDocData.title}
         </div>
@@ -34,7 +36,11 @@ const BlogDocDisplay = ({ chosenDocData }: blogDocDisplayPropsIF) => {
         </div>
       </div>
       <div style={{
-        borderTop: '1px solid gray'
+        borderTop: '1px solid gray',
+        height: 'calc(100% - 80px)',
+        width: '100%',
+        overflow: 'scroll',
+        wordWrap: 'break-word'
       }}>
         { chosenDocData.components.map((component: any, index: number) => {
           if (component.type === 'p') {

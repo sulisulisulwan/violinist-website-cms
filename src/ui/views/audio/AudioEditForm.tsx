@@ -12,7 +12,9 @@ interface audioEditFormPropsIF {
 }
 
 const AudioEditForm = ({ formFieldValues, setFormFieldValues }: audioEditFormPropsIF) => {
-  const [ globalAppState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ globalAppState ] = appStateManagement
+  
   const setFieldInForm = useSetFieldInForm(setFormFieldValues)
   useTextLoader('audio', setFormFieldValues)
 

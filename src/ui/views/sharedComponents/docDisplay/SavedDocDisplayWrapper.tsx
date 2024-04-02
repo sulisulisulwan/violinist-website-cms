@@ -1,6 +1,9 @@
 import * as React from 'react'
 import ListButton from '../ListButton'
-import { GlobalAppStateManagement } from '../../../Cms'
+import { GlobalAppStateManagement } from '../../../../Cms'
+import { useWorkflowManager } from '../docEditor/hooks/useWorkflowManager'
+import ModalWrapper from '../modals/ModalWrapper'
+import DeleteModal from '../modals/DeleteModal'
 const { useContext } = React
 
 interface savedDocDisplayWrapperPropsIF {
@@ -10,7 +13,10 @@ interface savedDocDisplayWrapperPropsIF {
 
 const SavedDocDisplayWrapper = ({ chosenDocData, children }: savedDocDisplayWrapperPropsIF) => {
 
-  const [ globalAppState, setGlobalAppState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ globalAppState, setGlobalAppState ] = appStateManagement
+  
+  useWorkflowManager(globalAppState, setGlobalAppState)
 
   return (
     <div 
@@ -19,7 +25,11 @@ const SavedDocDisplayWrapper = ({ chosenDocData, children }: savedDocDisplayWrap
         margin: '10px',
         padding: '5px',
         background: 'white',
-        outline: '2px outset gainsboro',
+        border: '2px outset gainsboro',
+        width: 'calc(100% - 35px)',
+        height: 'calc(100% - 35px)',
+        maxWidth: 'calc(100% - 35px)',
+        maxHeight: 'calc(100% - 35px)'
       }}
     >
       <div 
@@ -67,8 +77,22 @@ const SavedDocDisplayWrapper = ({ chosenDocData, children }: savedDocDisplayWrap
           }}
         >{chosenDocData?.name}</div>
       </div>
-      <div className="saved-doc-main">
+      <div 
+        className="saved-doc-main"
+        style={{
+          height: 'calc(100% - 40px)'
+        }}
+      >
         { children }
+      </div>
+      <div>
+        <ModalWrapper isOpen={globalAppState.modal.isOpen}>
+          {
+            globalAppState.modal.type === '' ? null 
+              : globalAppState.modal.type === 'delete' ? <DeleteModal/> 
+              : null
+          }
+        </ModalWrapper>
       </div>
     </div>
   )

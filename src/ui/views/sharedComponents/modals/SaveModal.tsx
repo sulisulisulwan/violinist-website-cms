@@ -1,9 +1,9 @@
 import * as React from 'react'
 const { useContext } = React
-import { cancelSave, dontSaveDocument, saveDocument } from '../../../crud/save'
+import { cancelSave, dontSaveDocument, saveDocument } from '../../../../crud/save'
 import ListButton from '../ListButton'
 
-import { GlobalAppStateManagement } from '../../../Cms'
+import { GlobalAppStateManagement } from '../../../../Cms'
 import { initialFormStates } from 'suli-violin-website-types/src'
 
 interface deleteModalProps {
@@ -12,7 +12,8 @@ interface deleteModalProps {
 
 const SaveModal = ({ formFieldValues }: deleteModalProps) => {
 
-  const [ state, setState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ state, setState ] = appStateManagement
 
   return (
     <>

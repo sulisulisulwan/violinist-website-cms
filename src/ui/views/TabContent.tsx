@@ -1,7 +1,7 @@
 import * as React from 'react'
-import EditorWrapper from '../sharedComponents/editor/EditWrapper'
-import SavedDocDisplayWrapper from '../sharedComponents/docDisplay/SavedDocDisplayWrapper'
-import DocList from '../sharedComponents/docDisplay/DocList'
+import EditorWrapper from './sharedComponents/docEditor/EditWrapper'
+import SavedDocDisplayWrapper from './sharedComponents/docDisplay/SavedDocDisplayWrapper'
+import DocList from './sharedComponents/docList/DocList'
 
 import BioDocDisplay from './biography/BioDocDisplay'
 import CalendarDocDisplay from './calendar/CalendarDocDisplay'
@@ -17,7 +17,7 @@ import VideosListItems from './videos/VideosListItems'
 import VideoDocDisplay from './videos/VideosDocDisplay'
 import PlaylistsDocDisplay from './playlists/PlaylistsDocDisplay'
 import PlaylistsListItems from './playlists/PlaylistsListItems'
-import { useGetChosenDocData } from '../sharedComponents/docDisplay/hooks/useGetChosenDocData'
+import { useGetChosenDocData } from './sharedComponents/docDisplay/hooks/useGetChosenDocData'
 import { initStateIF, setStateSSA } from 'suli-violin-website-types/src'
 
 interface tabContentPropsIF {
@@ -51,14 +51,14 @@ const TabContent = ({ state, setState }: tabContentPropsIF) => {
       style={{
         background: 'beige',
         border: '1px solid gray',
-        display: 'grid',
-        gridTemplateColumns: '50% 50%'
+        height: 'calc(100% - 65px)',
+        width: '100%',
       }}
     >
-      <EditorWrapper/>
-      <SavedDocDisplayWrapper chosenDocData={chosenDocData}>
-        { savedDocChildren }
-      </SavedDocDisplayWrapper>
+      {
+        state.currWorkflow === 'edit' || state.editDocId !== null || state.editFieldsEnabled ? <EditorWrapper/>
+        : <SavedDocDisplayWrapper chosenDocData={chosenDocData}>{ savedDocChildren }</SavedDocDisplayWrapper>
+      }
     </div>
   )
 }

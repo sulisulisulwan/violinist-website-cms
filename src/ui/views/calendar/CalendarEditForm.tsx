@@ -16,16 +16,20 @@ interface calendarEditFormPropsIF {
 
 const CalendarEditForm = ({ formFieldValues, setFormFieldValues }: calendarEditFormPropsIF) => {
 
-  const [ globalAppState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ globalAppState ] = appStateManagement
 
   useTextLoader('calendar', setFormFieldValues)
   
   return (
-    <div>
+    <div style={{
+      height: 'calc(100% - 60px)',
+      overflow: 'scroll'
+    }}>
       <form style={{
         display: 'flex',
         flexDirection: 'column',
-        color: !globalAppState.editFieldsEnabled ? 'gray' : 'black'
+        color: !globalAppState.editFieldsEnabled ? 'gray' : 'black',
       }}>
         <GlobalDateRange state={globalAppState} calendarFormValues={formFieldValues} setCalendarFormValues={setFormFieldValues}/>
         <label style={{

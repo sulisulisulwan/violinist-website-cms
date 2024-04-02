@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { parseTimeAsNonMilitaryAMPM } from '../../../utils/dateFunctions'
+import { parseTimeAsNonMilitaryAMPM } from '../../../../utils/dateFunctions'
 
 interface selectTimePropsIF {
   timeStateProps: {

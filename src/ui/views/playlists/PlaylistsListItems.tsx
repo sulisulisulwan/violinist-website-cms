@@ -1,12 +1,14 @@
 import * as React from 'react'
-import ListButton from '../../sharedComponents/ListButton'
+import ListButton from '../sharedComponents/ListButton'
 import { GlobalAppStateManagement } from '../../../Cms'
 import { PlaylistItemAPI } from 'suli-violin-website-types/src'
+import HoveringDiv from '../blog/HoveringDiv'
 const { useContext } = React
 
 const PlaylistsListItems = () => {
   
-  const [ globalAppState, setGlobalAppState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ globalAppState, setGlobalAppState ] = appStateManagement
   
   const playlistsData = globalAppState.fetchedData
   if (!playlistsData || playlistsData.dataType !== 'playlists') return null
@@ -35,33 +37,23 @@ const PlaylistsListItems = () => {
               justifyContent: 'space-between'
             }}
           >
-            <div 
-              onMouseEnter={ (e: any) => { e.target.style.fontWeight = '900'}}
-              onMouseLeave={ (e: any) => { e.target.style.fontWeight = '100'}}
-            >
-              {playlistData.name}
-            </div>
+            <HoveringDiv stylesOverride={{ width: '100%' }}>
+              <div 
+                style={{
+                  width: '100%'
+                }}
+                onClick={(e) => { setGlobalAppState((prevState) => ({ ...prevState, displayDocId: playlistData.id }))} }
+              >
+                {playlistData.name}
+              </div>
+            </HoveringDiv>
             <div>
-              <ul style={{
+              <ul 
+                style={{
                   display:'flex',
                   listStyleType: 'none',
                   padding: 0
                 }}>
-                  <ListButton 
-                    isDisabled={false} 
-                    text='DISPLAY' 
-                    onClickHandler={(e) => { setGlobalAppState((prevState) => ({ ...prevState, displayDocId: playlistData.id }))} }
-                  />
-                  <ListButton 
-                    isDisabled={globalAppState.editDocId !== null && globalAppState.editDocId === playlistData.id }
-                    text={'EDIT'} 
-                    onClickHandler={() => { setGlobalAppState((prevState) => ({ 
-                      ...prevState,
-                      editDocId: playlistData.id,
-                      displayDocId: playlistData.id,
-                      currWorkflow: 'edit',
-                    })) }}
-                  />
                   <ListButton 
                     isDisabled={false} 
                     text='DELETE' 

@@ -26,15 +26,12 @@ const findVideos = (fetchedData: any, displayDocId: number, currentTab: string) 
 
 const findPlaylists = (fetchedData: any, displayDocId: number, currentTab: string) => {
   if (fetchedData === null || currentTab !== fetchedData.dataType) return null
-  console.log(fetchedData)
   return fetchedData.results.playlists.find((data: any) => { return data.id === displayDocId })
 }
 
-const findDoc = (fetchedData: any, displayDocId: number, currentTab: string) => {
+const findBlogDoc = (fetchedData: any, displayDocId: number, currentTab: string) => {
   if (fetchedData === null || currentTab !== fetchedData.dataType) return null
-  return fetchedData[currentTab] ?
-    fetchedData[currentTab].results.find((data: any) => { return data.id === displayDocId })
-    : null
+  return fetchedData.results.find((data:any) => { return data.id === displayDocId })
 }
 
 const findBioDoc = (fetchedData: any, displayDocId: number, currentTab: string) => {
@@ -45,7 +42,7 @@ const findBioDoc = (fetchedData: any, displayDocId: number, currentTab: string) 
 const targetDocMap: any = {
   audio: findAudio,
   bio: findBioDoc,
-  blog: findDoc,
+  blog: findBlogDoc,
   calendar: findCalendarDoc,
   photos: findPhotos,
   playlists: findPlaylists,

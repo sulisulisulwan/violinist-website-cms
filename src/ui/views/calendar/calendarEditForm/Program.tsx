@@ -1,7 +1,7 @@
 import * as React from 'react'
 const { useContext } = React
-import CloseButton from '../../../sharedComponents/CloseButton'
-import DivButton from '../../../sharedComponents/DivButton'
+import CloseButton from '../../sharedComponents/CloseButton'
+import DivButton from '../../sharedComponents/DivButton'
 import { GlobalAppStateManagement } from '../../../../Cms'
 import { calendarFormFieldStateIF } from 'suli-violin-website-types/src'
 
@@ -18,7 +18,8 @@ interface programPropsIF {
 
 const Program = ({ calendarFormValues, setCalendarFormValues }: programPropsIF) => {
 
-  const state = useContext(GlobalAppStateManagement)[0]
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const state = appStateManagement[0]
 
   return (
     <label style={{

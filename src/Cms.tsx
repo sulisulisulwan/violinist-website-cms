@@ -1,66 +1,68 @@
 import * as React from 'react'
 import { useState, useEffect, createContext } from 'react'
 import TabContent from './ui/views/TabContent'
-import Nav from './ui/sharedComponents/nav/Nav'
-import { bioApiHandler } from './api/handlers/bio'
-import { calendarApiHandler } from './api/handlers/calendar'
-import { mediaApiHandler } from './api/handlers/media'
+import Nav from './ui/views/nav/Nav'
 import { inboundTransformerMap } from './transformers/transformers'
-import { blogApiHandler } from './api/handlers/blog'
 import { initStateIF, setStateSSA, tabListItemIF } from 'suli-violin-website-types/src'
 import { apiResourceHandlersMap } from './api'
-
-const initialState: initStateIF = {
-  currentTab: 'bio',
-  deleteDocId: null,
-  displayDocId: null,
-  currWorkflow: '',
-  editFieldsEnabled: false,
-  editDocId: null,
-  fetchedData: null,
-  isDeletePhase: false,
-  modal: {
-    isOpen: false,
-    type: ''
-  },
-}
+import { useWindowWidth } from './ui/hooks'
 
 const tabsList: tabListItemIF[] = [
   {
-    metaName: 'bio',
-    name: 'BIO'
+    metaName: 'audio',
+    name: 'AUDIO'
   },
   {
-    metaName: 'calendar',
-    name: 'CALENDAR'
+    metaName: 'bio',
+    name: 'BIO'
   },
   {
     metaName: 'blog',
     name: 'BLOG'
   },
   {
-    metaName: 'videos',
-    name: 'VIDEOS'
+    metaName: 'calendar',
+    name: 'CALENDAR'
   },
   {
     metaName: 'photos',
     name: 'PHOTOS'
   },
   {
-    metaName: 'audio',
-    name: 'AUDIO'
-  },
-  {
     metaName: 'playlists',
     name: 'PLAYLISTS'
   },
+  {
+    metaName: 'videos',
+    name: 'VIDEOS'
+  },
 ]
 
-export const GlobalAppStateManagement: React.Context<[initStateIF, setStateSSA]> = createContext(null)
+interface globalAppContextIF {
+  windowWidth: number
+  appStateManagement: [initStateIF, setStateSSA]
+}
+
+export const GlobalAppStateManagement: React.Context<globalAppContextIF> = createContext(null)
 
 const Cms = () => {
 
-  const [ state, setState ] = useState(initialState)
+  const windowWidth = useWindowWidth()
+
+  const [ state, setState ] = useState<initStateIF>({
+    currentTab: 'blog',
+    deleteDocId: null,
+    displayDocId: null,
+    currWorkflow: '',
+    editFieldsEnabled: false,
+    editDocId: null,
+    fetchedData: null,
+    isDeletePhase: false,
+    modal: {
+      isOpen: false,
+      type: ''
+    },
+  })
 
   const handleClickTab = (val: string) => {
     setState((prevState) => ({
@@ -82,7 +84,6 @@ const Cms = () => {
         ...prevState,
         fetchedData: transformed
       }))
-      console.log(transformed)
     }
 
 
@@ -90,8 +91,19 @@ const Cms = () => {
   }, [state.currentTab])
 
   return (
-    <GlobalAppStateManagement.Provider value={[state, setState]}>
-      <div>
+    <GlobalAppStateManagement.Provider value={{
+      windowWidth: windowWidth,
+      appStateManagement: [state, setState]
+    }}>
+      <div 
+        className="cms-wrapper"
+        style={{
+          height: '100%',
+          maxHeight: '100%',
+          width: '100vw',
+          maxWidth: '100vw',
+        }}
+      >
         <Nav
           handleClickTab={handleClickTab}
           tabsList={tabsList}

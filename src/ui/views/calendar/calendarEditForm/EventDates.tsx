@@ -1,10 +1,10 @@
 import * as  React from 'react'
-import SelectMonth from '../../../sharedComponents/dateTimeSelects/SelectMonth'
-import SelectDay from '../../../sharedComponents/dateTimeSelects/SelectDay'
-import SelectYear from '../../../sharedComponents/dateTimeSelects/SelectYear'
-import SelectTime from '../../../sharedComponents/dateTimeSelects/SelectTime'
-import DivButton from '../../../sharedComponents/DivButton'
-import CloseButton from '../../../sharedComponents/CloseButton'
+import SelectMonth from '../../sharedComponents/dateTimeSelects/SelectMonth'
+import SelectDay from '../../sharedComponents/dateTimeSelects/SelectDay'
+import SelectYear from '../../sharedComponents/dateTimeSelects/SelectYear'
+import SelectTime from '../../sharedComponents/dateTimeSelects/SelectTime'
+import DivButton from '../../sharedComponents/DivButton'
+import CloseButton from '../../sharedComponents/CloseButton'
 import { GlobalAppStateManagement } from '../../../../Cms'
 import { calendarFormFieldStateIF, eventListingFormStateIF, initStateIF } from 'suli-violin-website-types/src'
 
@@ -69,7 +69,8 @@ interface eventDatesPropsIF {
 
 const EventDates = ({ calendarFormValues, setCalendarFormValues }: eventDatesPropsIF) => {
   
-  const state = useContext(GlobalAppStateManagement)[0]
+  const { appStateManagement }= useContext(GlobalAppStateManagement)
+  const state = appStateManagement[0]
 
   return (
     <label style={{

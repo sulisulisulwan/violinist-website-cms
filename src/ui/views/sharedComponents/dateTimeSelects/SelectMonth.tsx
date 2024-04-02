@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { numToMonth } from '../../../utils/dateFunctions'
+import { numToMonth } from '../../../../utils/dateFunctions'
 import { paddedMonthNumbers, threeLetterMonths } from 'suli-violin-website-types/src'
 
 const months = new Array(12)

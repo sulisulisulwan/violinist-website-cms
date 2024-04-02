@@ -7,7 +7,9 @@ import { VideoDataAPI } from 'suli-violin-website-types/src'
 
 const VideoDocDisplay = () => {
 
-  const [ globalAppState, setGlobalAppState ] = useContext(GlobalAppStateManagement)
+  const { appStateManagement } = useContext(GlobalAppStateManagement)
+  const [ globalAppState, setGlobalAppState ] = appStateManagement
+  
   const videos: { dataType: 'videos', results: VideoDataAPI[] }= globalAppState.fetchedData
   const targetDoc = videos.results.find((video) => video.id === globalAppState.displayDocId)
 

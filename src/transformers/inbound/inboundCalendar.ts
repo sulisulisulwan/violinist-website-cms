@@ -57,7 +57,6 @@ export const calendarInboundTransformer = (apiData: AxiosResponse): CalendarInbo
     })
     
   }
-  console.log(transformed)
 
   return transformed
 }

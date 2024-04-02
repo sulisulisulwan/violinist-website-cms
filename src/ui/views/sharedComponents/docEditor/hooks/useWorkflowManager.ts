@@ -7,7 +7,7 @@ export const useWorkflowManager = (globalAppState: initStateIF, setGlobalAppStat
 
 const workflowActions = (state: initStateIF, setState: setStateSSA) => {
 
-
+  
   const workflows = state.currWorkflow.split('/')
 
   if (workflows.includes('newDoc')) {
@@ -19,6 +19,7 @@ const workflowActions = (state: initStateIF, setState: setStateSSA) => {
     editWorkflow(state, setState, workflows)
     return
   }
+  
   
   if (workflows.includes('delete')) {
     deleteWorkflow(state, setState, workflows)

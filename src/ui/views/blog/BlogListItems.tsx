@@ -1,16 +1,17 @@
 import * as React from 'react'
 import { GlobalAppStateManagement } from '../../../Cms'
-import ListButton from '../../sharedComponents/ListButton'
+import ListButton from '../sharedComponents/ListButton'
 import { formatDate } from './BlogDocDisplay'
 import { BlogItemAPI } from 'suli-violin-website-types/src'
+import HoveringDiv from './HoveringDiv'
 const { useContext } = React
 
 const BlogListItems = () => {
 
-  const [ globalAppState, setGlobalAppState ] = useContext(GlobalAppStateManagement)
+  const {appStateManagement} = useContext(GlobalAppStateManagement)
+  const [ globalAppState, setGlobalAppState ] = appStateManagement
+  
   const blogsData = globalAppState.fetchedData
-  if (!blogsData || blogsData.dataType !== 'blogs') return null
-
   const deleteClickHandler = async(id: number) => {
     setGlobalAppState((prevState: any) => ({ 
       ...prevState, 
@@ -18,6 +19,9 @@ const BlogListItems = () => {
       deleteDocId: id 
     }))
   }
+
+
+  if (!blogsData || blogsData.dataType !== 'blog') return null
 
   return (
     <div>
@@ -36,41 +40,33 @@ const BlogListItems = () => {
               display: 'flex',
               justifyContent: 'space-between'
             }}
-          >
-            <div>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span style={{ fontSize: 13 }}>Created: {formatDate(blogData.dateCreated)}</span>
-                <span style={{ fontSize: 13 }}>Modified {formatDate(blogData.dateLastModified)}</span>
-              </div>
-              
-            </div>
-            <div 
-                onMouseEnter={ (e: any) => { e.target.style.fontWeight = '900'}}
-                onMouseLeave={ (e: any) => { e.target.style.fontWeight = '100'}}
-              >
-                {blogData.title}
-              </div>
+            >
+              <HoveringDiv stylesOverride={{ width: '100%' }}>
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '50% 50%'
+                  }}
+                  onClick={(e) => { setGlobalAppState((prevState) => ({ ...prevState, displayDocId: blogData.id }))} }
+                >
+                  <div>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <span style={{ fontSize: 13 }}>Created: {formatDate(blogData.dateCreated)}</span>
+                      <span style={{ fontSize: 13 }}>Modified {formatDate(blogData.dateLastModified)}</span>
+                    </div>
+                  </div>
+                  <div 
+                  >
+                    {blogData.title}
+                  </div>
+                </div>
+              </HoveringDiv>
             <div>
               <ul style={{
                   display:'flex',
                   listStyleType: 'none',
                   padding: 0
                 }}>
-                <ListButton 
-                  isDisabled={false} 
-                  text='DISPLAY' 
-                  onClickHandler={(e) => { setGlobalAppState((prevState) => ({ ...prevState, displayDocId: blogData.id }))} }
-                />
-                <ListButton 
-                  isDisabled={globalAppState.editDocId !== null && globalAppState.editDocId === blogData.id }
-                  text={'EDIT'} 
-                  onClickHandler={() => { setGlobalAppState((prevState) => ({ 
-                    ...prevState,
-                    editDocId: blogData.id,
-                    displayDocId: blogData.id,
-                    currWorkflow: 'edit',
-                  })) }}
-                />
                 <ListButton 
                   isDisabled={false} 
                   text='DELETE' 

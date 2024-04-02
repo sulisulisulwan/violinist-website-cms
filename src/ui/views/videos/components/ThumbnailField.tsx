@@ -1,5 +1,5 @@
 import * as React from 'react'
-import ListButton from '../../../sharedComponents/ListButton'
+import ListButton from '../../sharedComponents/ListButton'
 import { useGetThumbnailPreview } from '../hooks/useGetThumbnailPreview'
 import { initStateIF, videosFormFieldStateIF } from 'suli-violin-website-types/src'
 
