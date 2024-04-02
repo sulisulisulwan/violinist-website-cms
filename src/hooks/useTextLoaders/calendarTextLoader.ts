@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { getInitFormFieldsState } from "../initFormFieldsStates"
+import { getInitFormFieldsState } from "../../initFormFieldsStates"
 import { EventGroupAPI, calendarFormFieldStateIF, initStateIF, setStateSSA } from 'suli-violin-website-types/src'
 
 const calendarTextLoader = (state: initStateIF, setState: setStateSSA, setFormFieldValues: React.Dispatch<React.SetStateAction<calendarFormFieldStateIF>>) => {

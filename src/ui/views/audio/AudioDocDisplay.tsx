@@ -1,5 +1,5 @@
 import * as React from 'react'
-import config from '../../../../config'
+import { GlobalAppStateManagement } from '../../../Cms'
 
 interface audioDocDisplayPropsIF {
   chosenDocData: any
@@ -9,6 +9,8 @@ interface audioDocDisplayPropsIF {
 
 const AudioDocDisplay = ({ chosenDocData }: audioDocDisplayPropsIF) => {
 
+  const config = React.useContext(GlobalAppStateManagement).config
+
   return (
     <div style={{
       display: 'flex', 
@@ -16,7 +18,7 @@ const AudioDocDisplay = ({ chosenDocData }: audioDocDisplayPropsIF) => {
       margin: 10
     }}>
       <div>
-        <audio controls src={`${config.BACKEND_API_BASE_URL}/media/audio?id=${chosenDocData.id}`}/>
+        <audio controls src={`${config.getField('BACKEND_API_BASE_URL')}/media/audio?id=${chosenDocData.id}`}/>
       </div>
       <div>
         <span style={{ fontWeight: 'bold' }}>Author: </span>

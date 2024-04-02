@@ -1,12 +1,12 @@
 import { useContext } from "react"
 import { GlobalAppStateManagement } from "../Cms"
-import audioTextLoader from "./audioTextLoader"
-import bioTextLoader from "./bioTextLoader"
-import blogTextLoader from "./blogTextLoader"
-import calendarTextLoader from "./calendarTextLoader"
-import photosTextLoader from "./photosTextLoader"
-import playlistsTextLoader from "./playlistsTextLoader"
-import videosTextLoader from "./videosTextLoader"
+import audioTextLoader from "./useTextLoaders/audioTextLoader"
+import bioTextLoader from "./useTextLoaders/bioTextLoader"
+import blogTextLoader from "./useTextLoaders/blogTextLoader"
+import calendarTextLoader from "./useTextLoaders/calendarTextLoader"
+import photosTextLoader from "./useTextLoaders/photosTextLoader"
+import playlistsTextLoader from "./useTextLoaders/playlistsTextLoader"
+import videosTextLoader from "./useTextLoaders/videosTextLoader"
 import { formFieldStates } from 'suli-violin-website-types/src'
 
 

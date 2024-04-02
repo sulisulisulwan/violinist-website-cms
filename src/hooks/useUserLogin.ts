@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { cmsAuthApiHandler } from "./api/handlers/cms-auth"
+import { cmsAuthApiHandler } from "../api/handlers/cms-auth"
+import { Config } from "../config/config"
 
-const useUserLogin = () => {
+const useUserLogin = (config: Config) => {
 
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
 
@@ -15,6 +16,8 @@ const useUserLogin = () => {
       username,
       password
     }
+
+    if (!config) return
 
     const result = await cmsAuthApiHandler('POST', '', data)
     

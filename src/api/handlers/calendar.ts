@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import config from '../../../config'
+import config from '../../config/config'
 import { EventGroupAPI, httpMethods } from 'suli-violin-website-types/src'
-const { BACKEND_API_BASE_URL } = config
 
 export const calendarApiHandler = async (
   method: httpMethods, 
@@ -13,7 +12,7 @@ export const calendarApiHandler = async (
 
   if (!fetcher) throw new Error(`Invalid method [${method}] used when calling endpoint '/calendar'`)
 
-  const result = await fetcher(`${BACKEND_API_BASE_URL}/calendar${query ? query : ''}`, data as AxiosRequestConfig)
+  const result = await fetcher(`${config.getField('BACKEND_API_BASE_URL')}/calendar${query ? query : ''}`, data as AxiosRequestConfig)
   return result
 }
 

@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import config from '../../../config'
+import config from '../../config/config'
 import { OutboundTransformedPhotos, httpMethods } from 'suli-violin-website-types/src'
-const { BACKEND_API_BASE_URL } = config
 
 
 export const photosApiHandler = async (
@@ -17,13 +16,13 @@ export const photosApiHandler = async (
   let url 
 
   if (['POST'].includes(method)) {
-    url = `${BACKEND_API_BASE_URL}/photos${query ? query : ''}`
+    url = `${config.getField('BACKEND_API_BASE_URL')}/photos${query ? query : ''}`
   }
 
-  if (method === 'GET') url = `${BACKEND_API_BASE_URL}/photos?type=media-photo${query ? query : ''}`
-  if (method === 'GET' && query) url = `${BACKEND_API_BASE_URL}/photos${query ? query : ''}`
+  if (method === 'GET') url = `${config.getField('BACKEND_API_BASE_URL')}/photos?type=media-photo${query ? query : ''}`
+  if (method === 'GET' && query) url = `${config.getField('BACKEND_API_BASE_URL')}/photos${query ? query : ''}`
 
-  if (['DELETE','PATCH'].includes(method)) url = `${BACKEND_API_BASE_URL}/photos${query ? query : ''}`
+  if (['DELETE','PATCH'].includes(method)) url = `${config.getField('BACKEND_API_BASE_URL')}/photos${query ? query : ''}`
   
   const result = await fetcher(url, data as AxiosRequestConfig)
   return result

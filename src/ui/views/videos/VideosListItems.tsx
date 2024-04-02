@@ -3,7 +3,7 @@ const { useContext } = React
 import { GlobalAppStateManagement } from '../../../Cms'
 import ListButton from '../sharedComponents/ListButton'
 import { VideoDataAPI } from 'suli-violin-website-types/src'
-import config from '../../../../config'
+import config from '../../../config/config'
 import HoveringDiv from '../blog/HoveringDiv'
 
 const VideosListItems = () => {
@@ -57,7 +57,7 @@ const VideosListItems = () => {
                     border: 'gray solid 1px'
                   }}
                   height={'100%'}
-                  src={`${config.BACKEND_API_BASE_URL}/media/videos/thumbnail?id=${video.id}`}
+                  src={`${config.getField('BACKEND_API_BASE_URL')}/media/videos/thumbnail?id=${video.id}`}
                 />
               </div>
               <div>

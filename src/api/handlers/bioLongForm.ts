@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import config from '../../../config'
+import config from '../../config/config'
 import { httpMethods } from 'suli-violin-website-types/src'
-const { BACKEND_API_BASE_URL } = config
 
 export const bioLongFormApiHandler = async (
   method: httpMethods, 
@@ -13,7 +12,7 @@ export const bioLongFormApiHandler = async (
 
   if (!fetcher) throw new Error(`Invalid method [${method}] used when calling endpoint '/bio'`)
 
-  const result = await fetcher(`${BACKEND_API_BASE_URL}/bio/longForm`, data)
+  const result = await fetcher(`${config.getField('BACKEND_API_BASE_URL')}/bio/longForm`, data)
   return result
 }
 

@@ -2,7 +2,7 @@ import * as React from 'react'
 const { useContext } = React
 import { GlobalAppStateManagement } from '../../../Cms'
 import { useSetFieldInForm } from '../useSetFieldInForm'
-import useTextLoader from '../../../textLoaders/_useTextLoader'
+import useTextLoader from '../../../hooks/useTextLoader'
 import { audioFormFieldStateIF } from 'suli-violin-website-types/src'
 
 

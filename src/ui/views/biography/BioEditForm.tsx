@@ -1,7 +1,7 @@
 import * as React from 'react'
 const { useState, useContext } = React
 import { GlobalAppStateManagement } from '../../../Cms'
-import useTextLoader from '../../../textLoaders/_useTextLoader'
+import useTextLoader from '../../../hooks/useTextLoader'
 import { bioFormFieldStateIF } from 'suli-violin-website-types/src'
 
 interface bioEditFormPropsIF {

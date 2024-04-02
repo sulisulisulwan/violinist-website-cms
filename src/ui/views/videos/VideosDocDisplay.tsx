@@ -1,21 +1,21 @@
 import * as React from 'react'
 const { useContext } = React
 import { GlobalAppStateManagement } from '../../../Cms'
-import config from '../../../../config'
+import config from '../../../config/config'
 import { VideoDataAPI } from 'suli-violin-website-types/src'
 
 
 const VideoDocDisplay = () => {
 
   const { appStateManagement } = useContext(GlobalAppStateManagement)
-  const [ globalAppState, setGlobalAppState ] = appStateManagement
+  const [ globalAppState ] = appStateManagement
   
   const videos: { dataType: 'videos', results: VideoDataAPI[] }= globalAppState.fetchedData
   const targetDoc = videos.results.find((video) => video.id === globalAppState.displayDocId)
 
   if (!targetDoc) return null
 
-  const thumbnailSrc = config.BACKEND_API_BASE_URL + '/media/videos/thumbnail?id=' + targetDoc.id
+  const thumbnailSrc = config.getField('BACKEND_API_BASE_URL') + '/media/videos/thumbnail?id=' + targetDoc.id
 
   return (
     <div>

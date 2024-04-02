@@ -6,6 +6,8 @@ import { inboundTransformerMap } from './transformers/transformers'
 import { initStateIF, setStateSSA, tabListItemIF } from 'suli-violin-website-types/src'
 import { apiResourceHandlersMap } from './api'
 import { useWindowWidth } from './ui/hooks'
+import { useConfig } from './hooks'
+import { Config } from './config/config'
 
 const tabsList: tabListItemIF[] = [
   {
@@ -39,18 +41,20 @@ const tabsList: tabListItemIF[] = [
 ]
 
 interface globalAppContextIF {
+  config: Config
   windowWidth: number
   appStateManagement: [initStateIF, setStateSSA]
 }
 
+
 export const GlobalAppStateManagement: React.Context<globalAppContextIF> = createContext(null)
 
-const Cms = () => {
+const Cms = ({ config }: any) => {
 
   const windowWidth = useWindowWidth()
 
   const [ state, setState ] = useState<initStateIF>({
-    currentTab: 'blog',
+    currentTab: 'audio',
     deleteDocId: null,
     displayDocId: null,
     currWorkflow: '',
@@ -76,6 +80,11 @@ const Cms = () => {
 
   useEffect(() => {
     const getData = async () => {
+      
+      if (!config) {
+        return
+      }
+
       const apiHandler = apiResourceHandlersMap[state.currentTab]
       const inboundTransformer = inboundTransformerMap[state.currentTab]
       const data = await apiHandler('GET')
@@ -86,12 +95,12 @@ const Cms = () => {
       }))
     }
 
-
     getData()
-  }, [state.currentTab])
+  }, [state.currentTab, config])
 
   return (
     <GlobalAppStateManagement.Provider value={{
+      config: config,
       windowWidth: windowWidth,
       appStateManagement: [state, setState]
     }}>

@@ -1,7 +1,7 @@
 import * as React from 'react'
 const { useEffect, useState, useContext } = React
 import { GlobalAppStateManagement } from '../../../Cms'
-import useTextLoader from '../../../textLoaders/_useTextLoader'
+import useTextLoader from '../../../hooks/useTextLoader'
 import { formatDate } from './BlogDocDisplay'
 import { blogFormFieldStateIF } from 'suli-violin-website-types/src'
 

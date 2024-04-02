@@ -8,7 +8,7 @@ import { useSetFieldInForm } from '../useSetFieldInForm'
 import ThumbnailField from './components/ThumbnailField'
 import YoutubeCodeField from './components/YoutubeCodeField'
 import CaptionField from './components/CaptionField'
-import useTextLoader from '../../../textLoaders/_useTextLoader'
+import useTextLoader from '../../../hooks/useTextLoader'
 import { videosFormFieldStateIF } from 'suli-violin-website-types/src'
 
 interface videosEditFormPropsIF {

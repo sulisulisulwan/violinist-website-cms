@@ -3,7 +3,7 @@ const { useContext, useRef } = React
 import { GlobalAppStateManagement } from '../../../Cms'
 
 import { useSetFieldInForm } from '../useSetFieldInForm'
-import useTextLoader from '../../../textLoaders/_useTextLoader'
+import useTextLoader from '../../../hooks/useTextLoader'
 import { useGetThumbnailPreview } from '../videos/hooks/useGetThumbnailPreview'
 import { useTrackMouseCoords } from './useTrackMouseCoords'
 import { photosFormFieldStateIF } from 'suli-violin-website-types/src'

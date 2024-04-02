@@ -1,13 +1,15 @@
 import * as React from 'react'
 import Cms from './Cms'
 import LoginPage from './ui/views/login/LoginPage'
-import useUserLogin from './useUserLogin'
+import useUserLogin from './hooks/useUserLogin'
+import { useConfig } from './hooks'
 
 const App = () => {
 
-  const { isLoggedIn, onSubmitHandler } = useUserLogin()
-  // return (isLoggedIn ? <Cms/> : <LoginPage onSubmitHandler={onSubmitHandler}/>)
-  return <Cms/>
+  const configInstance = useConfig()
+
+  const { isLoggedIn, onSubmitHandler } = useUserLogin(configInstance)
+  return (isLoggedIn ? <Cms config={configInstance}/> : <LoginPage config={configInstance} onSubmitHandler={onSubmitHandler}/>)
  
 }
 

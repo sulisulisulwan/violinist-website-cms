@@ -1,11 +1,13 @@
 import * as React from 'react'
-import config from '../../../../config'
+import { GlobalAppStateManagement } from '../../../Cms'
 
 interface photosDocDisplayPropsIF {
   chosenDocData: any
 }
 
 const PhotosDocDisplay = ({ chosenDocData }: photosDocDisplayPropsIF) => {
+
+  const config = React.useContext(GlobalAppStateManagement).config
 
   return (
     <div style={{
@@ -23,7 +25,7 @@ const PhotosDocDisplay = ({ chosenDocData }: photosDocDisplayPropsIF) => {
             border: '1px solid gray'
           }}
           width={300}
-          src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${chosenDocData.id}`}
+          src={`${config.getField('BACKEND_API_BASE_URL')}/media/photos?id=${chosenDocData.id}`}
         />
       </div>
       <div>

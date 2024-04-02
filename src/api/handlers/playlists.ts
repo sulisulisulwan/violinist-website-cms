@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import config from '../../../config'
+import config from '../../config/config'
 import { PlaylistItemAPI, httpMethods } from 'suli-violin-website-types/src'
-const { BACKEND_API_BASE_URL } = config
 
 export const playlistsApiHandler = async (
   method: httpMethods, 
@@ -16,16 +15,16 @@ export const playlistsApiHandler = async (
   let url
 
   if (['POST'].includes(method)) {
-    url = `${BACKEND_API_BASE_URL}/media/photos${query ? query : ''}`
+    url = `${config.getField('BACKEND_API_BASE_URL')}/media/photos${query ? query : ''}`
   }
 
-  if (['DELETE','PATCH'].includes(method)) url = `${BACKEND_API_BASE_URL}/media/audio/playlists${query ? query : ''}`
+  if (['DELETE','PATCH'].includes(method)) url = `${config.getField('BACKEND_API_BASE_URL')}/media/audio/playlists${query ? query : ''}`
 
-  if (method === 'GET') url = `${BACKEND_API_BASE_URL}/media${query ? query : ''}`
-  if (method === 'GET' && query) url = `${BACKEND_API_BASE_URL}/media/audio/playlists${query ? query : ''}`
+  if (method === 'GET') url = `${config.getField('BACKEND_API_BASE_URL')}/media${query ? query : ''}`
+  if (method === 'GET' && query) url = `${config.getField('BACKEND_API_BASE_URL')}/media/audio/playlists${query ? query : ''}`
 
-  const playlistsResponse = await fetcher(`${BACKEND_API_BASE_URL}/media/audio/playlists${query ? query : ''}`, data as AxiosRequestConfig)
-  const audioResponse = await fetcher(`${BACKEND_API_BASE_URL}/media/audio`, data as AxiosRequestConfig)
+  const playlistsResponse = await fetcher(`${config.getField('BACKEND_API_BASE_URL')}/media/audio/playlists${query ? query : ''}`, data as AxiosRequestConfig)
+  const audioResponse = await fetcher(`${config.getField('BACKEND_API_BASE_URL')}/media/audio`, data as AxiosRequestConfig)
   return {
     playlistsResponse,
     audioResponse

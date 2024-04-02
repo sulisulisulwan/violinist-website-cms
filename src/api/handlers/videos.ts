@@ -1,8 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import config from '../../../config'
+import config from '../../config/config'
 import { OutboundTransformedVideos, httpMethods } from 'suli-violin-website-types/src'
-const { BACKEND_API_BASE_URL } = config
-
 
 export const videosApiHandler = async (
   method: httpMethods, 
@@ -16,10 +14,10 @@ export const videosApiHandler = async (
 
   let url 
 
-  if (method === 'POST') url = `${BACKEND_API_BASE_URL}/videos${query ? query : ''}`
-  if (method === 'GET') url = `${BACKEND_API_BASE_URL}/videos${query ? query : ''}`
-  if (method === 'GET' && query) url = `${BACKEND_API_BASE_URL}/videos${query ? query : ''}`
-  if (['DELETE','PATCH'].includes(method)) url = `${BACKEND_API_BASE_URL}/videos${query ? query : ''}`
+  if (method === 'POST') url = `${config.getField('BACKEND_API_BASE_URL')}/videos${query ? query : ''}`
+  if (method === 'GET') url = `${config.getField('BACKEND_API_BASE_URL')}/videos${query ? query : ''}`
+  if (method === 'GET' && query) url = `${config.getField('BACKEND_API_BASE_URL')}/videos${query ? query : ''}`
+  if (['DELETE','PATCH'].includes(method)) url = `${config.getField('BACKEND_API_BASE_URL')}/videos${query ? query : ''}`
 
   const result = await fetcher(url, data as AxiosRequestConfig)
   return result
