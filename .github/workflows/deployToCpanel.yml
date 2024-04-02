@@ -1,0 +1,38 @@
+name: Publish Website to CPanel
+on:
+  push: 
+    branches: 
+      - main
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+    - name: Use Node.js 18
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+    - name: 🔨 Build Project
+      run: |
+        npm install
+        npm run build
+    - name: Create JSON Config file
+      uses: 1arp/create-a-file-action@0.4.4
+      with:
+        path: './dist/'
+        isAbsolutePath: false
+        file: 'config.json'
+        content: |
+          {"BACKEND_API_BASE_URL": "${{ secrets.BACKEND_API_BASE_URL }}" }
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        log-level: verbose
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./dist/
