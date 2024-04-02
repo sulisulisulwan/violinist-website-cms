@@ -1,11 +1,13 @@
 import * as React from 'react'
+import { Config } from '../../../config/config'
 const { useState } = React
 
 interface loginPagePropsIF {
+  config: Config
   onSubmitHandler: React.Dispatch<React.SetStateAction<any>>
 }
 
-const LoginPage = ({ onSubmitHandler }: loginPagePropsIF) => {
+const LoginPage = ({ onSubmitHandler, config }: loginPagePropsIF) => {
 
   const [ loginCreds, setLoginCreds ] = useState({
     username: '',
