@@ -19,7 +19,7 @@ jobs:
     - name: 🔨 Build Project
       run: |
         npm install
-        npm run build
+        npm run build:prod
     - name: Create JSON Config file
       uses: 1arp/create-a-file-action@0.4.4
       with:

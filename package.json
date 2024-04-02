@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./server/server.js",
-    "build": "webpack -w"
+    "build:dev": "webpack -w",
+    "build:prod": "webpack"
   },
   "author": "",
   "license": "ISC",
