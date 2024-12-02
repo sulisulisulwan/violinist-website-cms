@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import parser from '../../utils/ComponentParserr'
 import { BiographyItemAPI, ParsedHTMLComponent, bioFormFieldStateIF, initStateIF, setStateSSA } from 'suli-violin-website-types/src'
 
 const bioTextLoader = (state: initStateIF, setState: setStateSSA, setFormFieldValues: React.Dispatch<React.SetStateAction<bioFormFieldStateIF>>) => {
@@ -9,20 +10,11 @@ const bioTextLoader = (state: initStateIF, setState: setStateSSA, setFormFieldVa
           { name: '', components: [] } 
         : state.fetchedData.results.find((doc: BiographyItemAPI) => state.editDocId === doc.id)
 
-      const loadText = targetDoc.components.reduce((memo: string, component: ParsedHTMLComponent) => {
-        let componentText = ''
-  
-        if (component.type === 'p') {
-          componentText += (component.content
-           + '\n\n')
-        }
-  
-        return memo += componentText
-      }, '')
-  
+      const loadText = parser.parseToHtml(targetDoc.components)
+
       setState((prevState) => ({ ...prevState, currWorkflow: '' }))
       setFormFieldValues(() => ({
-        textareaText: loadText,
+        textEditorText: loadText,
         titleText: targetDoc.name
       }))
     }

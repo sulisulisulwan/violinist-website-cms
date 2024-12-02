@@ -1,5 +1,6 @@
 
 import * as React from 'react'
+import parser from '../../../utils/ComponentParserr'
 
 interface bioDocDisplayPropsIF {
   chosenDocData: any
@@ -19,12 +20,7 @@ const BioDocDisplay = ({ chosenDocData }: bioDocDisplayPropsIF) => {
         overflow: 'scroll'
       }}
     >
-      { chosenDocData.components.map((component: any, index: number) => {
-        if (component.type === 'p') {
-          return <p key={'paragraphComponent' + index}>{component.content}</p>
-        }
-        return null
-      })}
+      { parser.parseToReactElements(React, chosenDocData.components) }
     </div>
   )
 }

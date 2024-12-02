@@ -1,11 +1,12 @@
 import * as React from 'react'
+import parser from '../../../utils/ComponentParserr'
 
 interface blogDocDisplayPropsIF {
   chosenDocData: any
 }
 
 const BlogDocDisplay = ({ chosenDocData }: blogDocDisplayPropsIF) => {
-  
+
   return (
     <div 
       className="blog-document-display"
@@ -42,12 +43,7 @@ const BlogDocDisplay = ({ chosenDocData }: blogDocDisplayPropsIF) => {
         overflow: 'scroll',
         wordWrap: 'break-word'
       }}>
-        { chosenDocData.components.map((component: any, index: number) => {
-          if (component.type === 'p') {
-            return <p key={'paragraphComponent' + index}>{component.content}</p>
-          }
-          return null
-        })}
+        { parser.parseToReactElements(React, chosenDocData.components) }
       </div>
     </div>
   )

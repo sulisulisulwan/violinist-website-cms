@@ -15,7 +15,6 @@ interface calendarEditFormPropsIF {
 }
 
 const CalendarEditForm = ({ formFieldValues, setFormFieldValues }: calendarEditFormPropsIF) => {
-
   const { appStateManagement } = useContext(GlobalAppStateManagement)
   const [ globalAppState ] = appStateManagement
 

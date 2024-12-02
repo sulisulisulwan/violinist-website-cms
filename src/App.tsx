@@ -9,7 +9,11 @@ const App = () => {
   const configInstance = useConfig()
 
   const { isLoggedIn, onSubmitHandler } = useUserLogin(configInstance)
-  return (isLoggedIn ? <Cms config={configInstance}/> : <LoginPage config={configInstance} onSubmitHandler={onSubmitHandler}/>)
+  return (
+    // isLoggedIn ? 
+    <Cms config={configInstance}/>
+    //  : <LoginPage config={configInstance} onSubmitHandler={onSubmitHandler}/>
+    )
  
 }
 

@@ -3,6 +3,10 @@ const { useState, useContext } = React
 import { GlobalAppStateManagement } from '../../../Cms'
 import useTextLoader from '../../../hooks/useTextLoader'
 import { bioFormFieldStateIF } from 'suli-violin-website-types/src'
+import * as CMSTextEditor from 'texteditorforcms'
+import toolbarSettings from '../toolbarSettings'
+
+const { TextEditor } = CMSTextEditor
 
 interface bioEditFormPropsIF {
   formFieldValues: bioFormFieldStateIF
@@ -11,11 +15,11 @@ interface bioEditFormPropsIF {
 
 const BioEditForm = ({ formFieldValues, setFormFieldValues }: bioEditFormPropsIF) => {
 
+
   const { appStateManagement } = useContext(GlobalAppStateManagement)
   const [ globalAppState ] = appStateManagement
 
   const [ titleInputFocused, setTitleInputFocused ] = useState(false)
-  const [ textareaFocused, setTextareaFocused ] = useState(false)
   
   useTextLoader('bio', setFormFieldValues)
 
@@ -52,31 +56,20 @@ const BioEditForm = ({ formFieldValues, setFormFieldValues }: bioEditFormPropsIF
           }))}
         ></input>
       </div>
-      <textarea 
-        id="bio-edit-form-content"
-        style={{
-          width: 'calc(100% - 5px)',
-          height: 'calc(100% - 60px)',
-          background: textareaFocused ? 'aliceBlue' : 'whitesmoke',
-          fontFamily: 'Arial',
-          fontSize: '15px',
-          outline: titleInputFocused ? 'none' : 'none',
-          // border: '0'
-        }}
-        onFocus={() => { setTextareaFocused(true) }}
-        onBlur={() => { setTextareaFocused(false) }}
-        disabled={!globalAppState.editFieldsEnabled}
-        onChange={(e) =>  setFormFieldValues((prevState: any) => {
-          
-          const newState = {
-          ...prevState,
-          textareaText: e.target.value
-          }
-          return newState
-      })}
 
-        value={formFieldValues.textareaText || ''}
-      ></textarea>
+      <TextEditor
+        html={formFieldValues.textEditorText || ''}
+        setHtml={(newText: string) => { setFormFieldValues((prevState: any) => ({
+          ...prevState,
+          textEditorText: newText
+        }))}}
+        toolbar={toolbarSettings}
+        style={{
+          width: '95%',
+          height: 'calc(100% - 150px)',
+          border: 'red solid 1px'
+        }}
+      />
     </div>
   )
 }

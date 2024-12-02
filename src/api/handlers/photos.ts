@@ -15,14 +15,11 @@ export const photosApiHandler = async (
 
   let url 
 
-  if (['POST'].includes(method)) {
-    url = `${config.getField('BACKEND_API_BASE_URL')}/photos${query ? query : ''}`
-  }
-
   if (method === 'GET') url = `${config.getField('BACKEND_API_BASE_URL')}/photos?type=media-photo${query ? query : ''}`
   if (method === 'GET' && query) url = `${config.getField('BACKEND_API_BASE_URL')}/photos${query ? query : ''}`
-
+  if (method === 'POST') url = `${config.getField('BACKEND_API_BASE_URL')}/photos${query ? query : ''}`
   if (['DELETE','PATCH'].includes(method)) url = `${config.getField('BACKEND_API_BASE_URL')}/photos${query ? query : ''}`
+
   
   const result = await fetcher(url, data as AxiosRequestConfig)
   return result

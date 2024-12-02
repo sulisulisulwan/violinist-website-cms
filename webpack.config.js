@@ -38,14 +38,16 @@ export default (env) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html'
+        template: './src/index.html',
+        inject: 'body'
       }),
       new MiniCssExtractPlugin({
-        filename:"main.css"})
+        filename:"main.css",
+      })
     ],
     output: {
       path: path.resolve(__dirname, "dist"),
-      publicPath: path.resolve(__dirname, "./dist/"),
+      // publicPath: path.resolve(__dirname, "./dist/"),  <--- this is for the path of the js and css links within the html
     },
     resolve: {
       extensions: [".js", ".jsx", ".tsx", ".ts"]

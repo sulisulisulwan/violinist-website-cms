@@ -14,14 +14,11 @@ export const playlistsApiHandler = async (
 
   let url
 
-  if (['POST'].includes(method)) {
-    url = `${config.getField('BACKEND_API_BASE_URL')}/media/photos${query ? query : ''}`
-  }
-
-  if (['DELETE','PATCH'].includes(method)) url = `${config.getField('BACKEND_API_BASE_URL')}/media/audio/playlists${query ? query : ''}`
-
   if (method === 'GET') url = `${config.getField('BACKEND_API_BASE_URL')}/media${query ? query : ''}`
   if (method === 'GET' && query) url = `${config.getField('BACKEND_API_BASE_URL')}/media/audio/playlists${query ? query : ''}`
+  if (method === 'POST') url = `${config.getField('BACKEND_API_BASE_URL')}/media/photos${query ? query : ''}`
+  if (['DELETE','PATCH'].includes(method)) url = `${config.getField('BACKEND_API_BASE_URL')}/media/audio/playlists${query ? query : ''}`
+
 
   const playlistsResponse = await fetcher(`${config.getField('BACKEND_API_BASE_URL')}/media/audio/playlists${query ? query : ''}`, data as AxiosRequestConfig)
   const audioResponse = await fetcher(`${config.getField('BACKEND_API_BASE_URL')}/media/audio`, data as AxiosRequestConfig)

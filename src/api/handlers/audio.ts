@@ -14,13 +14,7 @@ export const audioApiHandler = async (
 
   let url 
 
-  if (['POST'].includes(method)) {
-    url = `${config.getField('BACKEND_API_BASE_URL')}/audio${query ? query : ''}`
-  }
-
-  if (method === 'GET') url = `${config.getField('BACKEND_API_BASE_URL')}/audio${query ? query : ''}`
-
-  if (['DELETE','PATCH'].includes(method)) url = `${config.getField('BACKEND_API_BASE_URL')}/audio${query ? query : ''}`
+  if (['GET', 'POST', 'DELETE','PATCH'].includes(method)) url = `${config.getField('BACKEND_API_BASE_URL')}/audio${query ? query : ''}`
   
   const result = await fetcher(url, data as AxiosRequestConfig)
   return result

@@ -4,12 +4,15 @@ import { GlobalAppStateManagement } from '../../../Cms'
 import useTextLoader from '../../../hooks/useTextLoader'
 import { formatDate } from './BlogDocDisplay'
 import { blogFormFieldStateIF } from 'suli-violin-website-types/src'
-
+import * as CMSTextEditor from 'texteditorforcms'
+import toolbarSettings from '../toolbarSettings'
 
 interface blogEditFormPropsIF {
   formFieldValues: blogFormFieldStateIF
   setFormFieldValues: React.Dispatch<React.SetStateAction<any>>
 }
+
+const { TextEditor } = CMSTextEditor
 
 const BlogEditForm = ({ formFieldValues, setFormFieldValues }: blogEditFormPropsIF) => {
   const { appStateManagement } = useContext(GlobalAppStateManagement)
@@ -62,7 +65,7 @@ const BlogEditForm = ({ formFieldValues, setFormFieldValues }: blogEditFormProps
           }))}
         ></input>
       </div>
-      <textarea 
+      {/* <textarea 
         id="blog-entry-edit-form-content"
         style={{
           width: '95%',
@@ -80,13 +83,26 @@ const BlogEditForm = ({ formFieldValues, setFormFieldValues }: blogEditFormProps
           
           const newState = {
           ...prevState,
-          textareaText: e.target.value
+          textEditorText: e.target.value
           }
           return newState
       })}
 
-        value={formFieldValues.textareaText || ''}
-      ></textarea>
+        value={formFieldValues.textEditorText || ''}
+      ></textarea> */}
+      <TextEditor
+        html={formFieldValues.textEditorText || ''}
+        setHtml={(newText: string) => { setFormFieldValues((prevState: any) => ({
+          ...prevState,
+          textEditorText: newText
+        }))}}
+        toolbar={toolbarSettings}
+        style={{
+          width: '95%',
+          height: 'calc(100% - 150px)',
+          border: 'red solid 1px'
+        }}
+      />
     </div>
   )
 }

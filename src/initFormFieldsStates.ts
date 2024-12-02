@@ -12,7 +12,7 @@ import {
 
 const getBioForm = (): bioFormFieldStateIF => {
   return {
-    textareaText: '',
+    textEditorText: '',
     titleText: '',
   }
 
@@ -47,7 +47,7 @@ const getCalendarForm = (): calendarFormFieldStateIF => {
 const getBlogForm = (): blogFormFieldStateIF => {
   return {
     titleText: '',
-    textareaText: '',
+    textEditorText: '',
     dateCreated: '',
     dateLastModified: ''
   }
