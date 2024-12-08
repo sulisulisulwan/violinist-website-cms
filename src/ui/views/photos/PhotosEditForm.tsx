@@ -68,6 +68,8 @@ const PhotosEditForm = ({ formFieldValues, setFormFieldValues }: photosEditFormP
   //   )
   // }
 
+
+
   return (
     <div>
       <form
@@ -90,6 +92,7 @@ const PhotosEditForm = ({ formFieldValues, setFormFieldValues }: photosEditFormP
               type="file" 
               name="photo"
               disabled={!globalAppState.editFieldsEnabled}
+              value={formFieldValues.uploadPath ?? ''}
             />
           </label>
         }
