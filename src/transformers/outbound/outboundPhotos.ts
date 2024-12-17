@@ -3,8 +3,8 @@ import { OutboundTransformedPhotos, photosFormFieldStateIF } from 'suli-violin-w
 export const photosOutboundTransformer = (formFieldValues: photosFormFieldStateIF, docId: number | null): OutboundTransformedPhotos  => {
 
   if (docId === null) {
-    const audioUploadForm: any = document.getElementById('photos-upload-form')
-    const transformed = new FormData(audioUploadForm)
+    const photoUploadForm: any = document.getElementById('photos-upload-form')
+    const transformed = new FormData(photoUploadForm)
   
     transformed.append('photoCred', formFieldValues.photoCred)
     transformed.append('id', docId ? docId.toString() : null) // <--- WATCH OUT

@@ -2,6 +2,7 @@ import { OutboundTransformedVideoNotFormData, OutboundTransformedVideos, videosF
 
 export const videosOutboundTransformer = (formFieldValues: videosFormFieldStateIF, docId: number | null): OutboundTransformedVideos  => {
 
+
   const videosUploadForm: any = document.getElementById('videos-upload-form')
 
   const isFormData = formFieldValues.thumbnailUploadPath.currPref === 'custom'
@@ -11,6 +12,7 @@ export const videosOutboundTransformer = (formFieldValues: videosFormFieldStateI
     formFieldValues.thumbnailUploadPath.saved = ''
   }
 
+  console.dir(videosUploadForm)
   const transformed: OutboundTransformedVideos = isFormData ? new FormData(videosUploadForm) : {} as OutboundTransformedVideoNotFormData
 
   if (isFormData) {

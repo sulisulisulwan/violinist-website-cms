@@ -52,8 +52,8 @@ const BlogDocDisplay = ({ chosenDocData }: blogDocDisplayPropsIF) => {
 export const formatDate = (datetime: string) => {
   const date = new Date(datetime)
   const year = date.getFullYear()
-  const day = date.getDate()
-  const month = date.getMonth()
+  const day = date.getDate() + 1
+  const month = date.getMonth() + 1
   return month + '/' + day + '/' + year
 }
 

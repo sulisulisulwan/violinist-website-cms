@@ -19,6 +19,7 @@ export const videosApiHandler = async (
   if (method === 'GET' && query) url = `${config.getField('BACKEND_API_BASE_URL')}/videos${query ? query : ''}`
   if (['DELETE','PATCH'].includes(method)) url = `${config.getField('BACKEND_API_BASE_URL')}/videos${query ? query : ''}`
 
+  console.log(`data during method ${method}: `, data)
   const result = await fetcher(url, data as AxiosRequestConfig)
   return result
 }

@@ -13,7 +13,7 @@ export const photosApiHandler = async (
 
   if (!fetcher) throw new Error(`Invalid method [${method}] used when calling endpoint '/photos'`)
 
-  let url 
+  let url  
 
   if (method === 'GET') url = `${config.getField('BACKEND_API_BASE_URL')}/photos?type=media-photo${query ? query : ''}`
   if (method === 'GET' && query) url = `${config.getField('BACKEND_API_BASE_URL')}/photos${query ? query : ''}`
