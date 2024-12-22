@@ -54,7 +54,7 @@ const Cms = ({ config }: any) => {
   const windowWidth = useWindowWidth()
 
   const [ state, setState ] = useState<initStateIF>({
-    currentTab: 'audio',
+    currentTab: 'calendar',
     deleteDocId: null,
     displayDocId: null,
     currWorkflow: '',

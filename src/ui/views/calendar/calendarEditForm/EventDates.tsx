@@ -12,13 +12,13 @@ const { useContext } = React
 
 const [ defaultWeekday, defaultMonth, defaultDay, defaultYear] = new Date().toDateString().split(' ')
 
-const getNewEventDateData = (): eventListingFormStateIF => ({
+const getNewEventDateData = (globalStartDate: { day: string, month: string, year: string }): eventListingFormStateIF => ({
   id: null,
   dateTime: {
     date: {
-      year: defaultYear,
-      month: defaultMonth,
-      day: defaultDay
+      year: globalStartDate.year,
+      month: globalStartDate.month,
+      day: globalStartDate.day
     },
     time: {
       hour: '07',
@@ -87,7 +87,7 @@ const EventDates = ({ calendarFormValues, setCalendarFormValues }: eventDatesPro
           onClickHandler={(e: any) => { setCalendarFormValues((prevState) => { 
             e.preventDefault()
             const newEventDateArray = prevState.eventDates.slice()
-            newEventDateArray.push(getNewEventDateData())
+            newEventDateArray.push(getNewEventDateData(calendarFormValues.dateRange.start))
             return {
               ...prevState,
               eventDates: newEventDateArray
@@ -124,6 +124,8 @@ interface eventDatePropsIF {
 }
 
 const EventDate = ({ state, calendarFormValues, setCalendarFormValues ,index}: eventDatePropsIF) => {
+
+
   
   return (
     <div style={{

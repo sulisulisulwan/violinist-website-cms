@@ -26,7 +26,7 @@ const SelectYear = ({ state, dateStateProps, setDateState, }: selectYearPropsIF)
     <select 
       disabled={!state.editFieldsEnabled}
       onChange={ (e) => { setDateState(e.target.value)}}
-      defaultValue={dateStateProps.year}
+      value={dateStateProps.year}
     >
       { options.map(option => {
           return option

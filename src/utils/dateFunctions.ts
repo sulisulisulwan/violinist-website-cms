@@ -66,12 +66,13 @@ export const parseDateTime = (dateTimeIsoString: string): parsedDateAndTime => {
 }
 
 export const parseTimeAsNonMilitaryAMPM = (parsedDateTime: parsedDateAndTime): parsedAsNonMilitaryTime => {
+
   const { hour, minute } = parsedDateTime.time
 
   let hourNonMilitary = Number(hour)
   hourNonMilitary = hourNonMilitary > 12 ? hourNonMilitary - 12 : hourNonMilitary
   const amPm = Number(hour) >= 12 ? 'PM' : 'AM'
-  hourNonMilitary = hourNonMilitary === 0 ? 12 : hourNonMilitary
+  // hourNonMilitary = hourNonMilitary === 0 ? 12 : hourNonMilitary
 
   return {
     hour: hourNonMilitary.toString(),
