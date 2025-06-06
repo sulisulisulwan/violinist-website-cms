@@ -22,8 +22,8 @@ const padTime = (timeAsString: string) => {
 }
 
 const SelectTime = ({ timeStateProps, setTimeState }: selectTimePropsIF) => {
-  const { hour, minute, amPm } = timeStateProps
-  // const { amPm, hour, minute } = parseTimeAsNonMilitaryAMPM({ time: timeStateProps } as any)
+  // const { hour, minute, amPm } = timeStateProps
+  const { amPm, hour, minute } = parseTimeAsNonMilitaryAMPM({ time: timeStateProps } as any)
   const paddedMinute = padTime(minute)
 
   return (
@@ -33,6 +33,7 @@ const SelectTime = ({ timeStateProps, setTimeState }: selectTimePropsIF) => {
         onChange={(e) => {
 
           if (Number(e.target.value) > 12) return
+
           setTimeState({
             ...timeStateProps,
             hour: amPm === 'PM' ? (Number(e.target.value) + 12).toString() : e.target.value
