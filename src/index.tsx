@@ -6,6 +6,4 @@ import "./main.css"
 const container = document.getElementById('app')
 const root = ReactDom.createRoot(container)
 
-console.log('hello')
-
 root.render(<App/>)
