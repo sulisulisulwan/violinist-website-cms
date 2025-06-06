@@ -36,3 +36,4 @@ jobs:
         username: ${{ secrets.FTP_CMS_USERNAME }}
         password: ${{ secrets.FTP_CMS_PASSWORD }}
         local-dir: ./dist/
+
