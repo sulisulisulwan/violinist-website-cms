@@ -34,7 +34,7 @@ jobs:
         log-level: verbose
         server: ${{ secrets.FTP_CMS_SERVER }}
         #username: ${{ secrets.FTP_CMS_USERNAME }}
-        username: deployCMS@sulimantekalliviolin.com
+        username: deployCMS
         password: mis4mancymis4mancy
         local-dir: ./dist/
 
