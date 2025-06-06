@@ -36,5 +36,6 @@ jobs:
         #username: ${{ secrets.FTP_CMS_USERNAME }}
         username: suliozhf
         password: mis4mancymis4mancy
-        local-dir: ./public_html/cms/dist/
+        local-dir: ./dist/
+        server-dir: /public_html/cms/
 
