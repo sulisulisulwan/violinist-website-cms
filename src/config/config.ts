@@ -34,7 +34,6 @@ class Config {
     const configJson = await fetch('/config.json')
     // const configJson = await fetch('/alt.config.json')
     const json = await configJson.json()
-
     const config: any = {}
 
     this.keys.forEach(key => {
