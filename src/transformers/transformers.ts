@@ -16,6 +16,8 @@ import { audioInboundTransformer } from './inbound/inboundAudio'
 import { videosInboundTransformer } from './inbound/inboundVideos'
 import { photosInboundTransformer } from './inbound/inboundPhotos'
 import { playlistsInboundTransformer } from './inbound/inboundPlaylists'
+import { programsInboundTransformer } from './inbound/inboundPrograms'
+import { programsOutboundTransformer } from './outbound/outboundPrograms'
 
 
 export const inboundTransformerMap: Record<string, Function> = {
@@ -26,6 +28,7 @@ export const inboundTransformerMap: Record<string, Function> = {
   media: mediaInboundTransformer,
   videos: videosInboundTransformer,
   playlists: playlistsInboundTransformer,
+  programs: programsInboundTransformer,
   photos: photosInboundTransformer,
 }
 
@@ -35,6 +38,7 @@ export const outboundTransformerMap: Record<string, OutboundTransformer> = {
   blog: blogOutboundTransformer,
   calendar: calendarOutboundTransformer,
   photos: photosOutboundTransformer,
+  programs: programsOutboundTransformer,
   playlists: playlistOutboundTransformer,
   videos: videosOutboundTransformer
 }

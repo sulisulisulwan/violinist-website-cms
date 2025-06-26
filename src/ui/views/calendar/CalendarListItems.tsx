@@ -22,6 +22,7 @@ const CalendarListItems = () => {
       <div>
         <h3>UPCOMING EVENTS</h3>
         {
+          calendarData.upcoming.length ?
           calendarData.upcoming.map((eventGroupData: any, index: number) => {
             const { startIcon, endIcon } = parseDateToIcon(eventGroupData.dateRange)
             return <CalListItem 
@@ -34,11 +35,14 @@ const CalendarListItems = () => {
               setState={setState} 
             />
           })
+          : <div style={{ textAlign: 'center' }}>NO EVENTS</div>
         }
       </div>
+      <hr/>
       <div>
         <h3>PREVIOUS EVENTS</h3>
         {
+          calendarData.past.length ? 
           calendarData.past.map((eventGroupData: InboundEventGroup, index: number) => {
             const { startIcon, endIcon } = parseDateToIcon(eventGroupData.dateRange)
             return <CalListItem 
@@ -51,6 +55,7 @@ const CalendarListItems = () => {
               setState={setState} 
             />
           })
+          : <div style={{ textAlign: 'center' }}>NO EVENTS</div>
         }
       </div>
     </>

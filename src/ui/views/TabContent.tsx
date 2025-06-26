@@ -15,6 +15,8 @@ import BlogListItems from './blog/BlogListItems'
 import AudioListItems from './audio/AudioListItems'
 import VideosListItems from './videos/VideosListItems'
 import VideoDocDisplay from './videos/VideosDocDisplay'
+import ProgramsDocDisplay from './programs/ProgramsDocDisplay'
+import ProgramsListItems from './programs/ProgramsListItems'
 import PlaylistsDocDisplay from './playlists/PlaylistsDocDisplay'
 import PlaylistsListItems from './playlists/PlaylistsListItems'
 import { useGetChosenDocData } from './sharedComponents/docDisplay/hooks/useGetChosenDocData'
@@ -70,6 +72,7 @@ const docDisplayMap: Record<string, React.FunctionComponent> = {
   calendar: CalendarDocDisplay,
   photos: PhotosDocDisplay,
   playlists: PlaylistsDocDisplay,
+  programs: ProgramsDocDisplay,
   videos: VideoDocDisplay,
 }
 
@@ -80,6 +83,7 @@ const listItemsMap: Record<string, React.FunctionComponent> = {
   calendar: CalendarListItems,
   photos: PhotosListItems,
   playlists: PlaylistsListItems,
+  programs: ProgramsListItems,
   videos: VideosListItems,
 }
 

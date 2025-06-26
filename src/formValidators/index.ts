@@ -6,6 +6,7 @@ import { videosFormValidator } from "./validators/videos"
 import { blogFormValidator } from "./validators/blog"
 import { playlistsFormValidator } from "./validators/playlists"
 import { validator } from 'suli-violin-website-types/src'
+import { programsFormValidator } from "./validators/programs"
 
 export const validatorMap: Record<string, validator> = {
   bio: bioFormValidator,
@@ -13,6 +14,7 @@ export const validatorMap: Record<string, validator> = {
   calendar: calendarFormValidator,
   audio: audioFormValidator,
   photos: photosFormValidator,
+  programs: programsFormValidator,
   playlists: playlistsFormValidator,
   videos: videosFormValidator
 }

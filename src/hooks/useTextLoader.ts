@@ -8,6 +8,7 @@ import photosTextLoader from "./useTextLoaders/photosTextLoader"
 import playlistsTextLoader from "./useTextLoaders/playlistsTextLoader"
 import videosTextLoader from "./useTextLoaders/videosTextLoader"
 import { formFieldStates } from 'suli-violin-website-types/src'
+import programsTextLoader from "./useTextLoaders/programsTextLoader"
 
 
 const useTextLoader = (tab: string, setFormFieldValues: React.Dispatch<React.SetStateAction<formFieldStates>>) => {
@@ -24,6 +25,7 @@ const textLoaderMap: Record<string, Function> = {
   calendar: calendarTextLoader,
   photos: photosTextLoader,
   playlists: playlistsTextLoader,
+  programs: programsTextLoader,
   videos: videosTextLoader,
 }
 

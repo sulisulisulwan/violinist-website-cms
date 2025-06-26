@@ -31,6 +31,10 @@ const tabsList: tabListItemIF[] = [
     name: 'PHOTOS'
   },
   {
+    metaName: 'programs',
+    name: 'PROGRAMS'
+  },
+  {
     metaName: 'playlists',
     name: 'PLAYLISTS'
   },
@@ -54,9 +58,9 @@ const Cms = ({ config }: any) => {
   const windowWidth = useWindowWidth()
 
   const [ state, setState ] = useState<initStateIF>({
-    currentTab: 'calendar',
+    currentTab: 'programs',
     deleteDocId: null,
-    displayDocId: null,
+    displayDocId: 1,
     currWorkflow: '',
     editFieldsEnabled: false,
     editDocId: null,
@@ -85,6 +89,7 @@ const Cms = ({ config }: any) => {
         return
       }
 
+      
       const apiHandler = apiResourceHandlersMap[state.currentTab]
       const inboundTransformer = inboundTransformerMap[state.currentTab]
       const data = await apiHandler('GET')
@@ -94,10 +99,10 @@ const Cms = ({ config }: any) => {
         fetchedData: transformed
       }))
     }
-
+    
     getData()
   }, [state.currentTab, config])
-
+  
   return (
     <GlobalAppStateManagement.Provider value={{
       config: config,

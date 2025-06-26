@@ -17,7 +17,8 @@ import VideosEditForm from '../../videos/VideosEditForm'
 import AudioEditForm from '../../audio/AudioEditForm'
 import { useFormInitializer } from './hooks/useFormInitializer'
 import PlaylistsEditForm from '../../playlists/PlaylistsEditForm'
-import { audioFormFieldStateIF, bioFormFieldStateIF, blogFormFieldStateIF, calendarFormFieldStateIF, formTypes, initStateIF, photosFormFieldStateIF, playlistFormFieldStateIF, videosFormFieldStateIF } from 'suli-violin-website-types/src'
+import { audioFormFieldStateIF, bioFormFieldStateIF, blogFormFieldStateIF, calendarFormFieldStateIF, formTypes, initStateIF, photosFormFieldStateIF, playlistFormFieldStateIF, programsFormFieldStateIF, videosFormFieldStateIF } from 'suli-violin-website-types/src'
+import ProgramsEditForm from '../../programs/ProgramsEditForm'
 
 const EditorWrapper = () => {
   const { appStateManagement } = useContext(GlobalAppStateManagement)
@@ -96,6 +97,7 @@ const EditorWrapper = () => {
             : currentTab === 'photos' ? <PhotosEditForm formFieldValues={formFieldValues as photosFormFieldStateIF} setFormFieldValues={setFormFieldValues}/>
             : currentTab === 'playlists' ? <PlaylistsEditForm formFieldValues={formFieldValues as playlistFormFieldStateIF} setFormFieldValues={setFormFieldValues}/>
             : currentTab === 'videos' ? <VideosEditForm formFieldValues={formFieldValues as videosFormFieldStateIF} setFormFieldValues={setFormFieldValues}/>
+            : currentTab === 'programs' ? <ProgramsEditForm formFieldValues={formFieldValues as programsFormFieldStateIF} setFormFieldValues={setFormFieldValues}/>
             : null
         }
       </div>

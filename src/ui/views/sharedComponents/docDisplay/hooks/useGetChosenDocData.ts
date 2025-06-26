@@ -39,6 +39,14 @@ const findBioDoc = (fetchedData: any, displayDocId: number, currentTab: string) 
   return fetchedData.results.find((data: any) => { return data.id === displayDocId })
 }
 
+const findProgramDoc = (fetchedData: any, displayDocId: number, currentTab: string) => {
+  //TODO:
+  if (fetchedData === null 
+    || currentTab !== fetchedData.dataType
+  ) return null
+  return fetchedData.results.find((data: any) => { return data.id === displayDocId })
+}
+
 const targetDocMap: any = {
   audio: findAudio,
   bio: findBioDoc,
@@ -46,6 +54,7 @@ const targetDocMap: any = {
   calendar: findCalendarDoc,
   photos: findPhotos,
   playlists: findPlaylists,
+  programs: findProgramDoc,
   videos: findVideos,
 }
 

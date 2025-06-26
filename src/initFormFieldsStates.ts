@@ -15,7 +15,6 @@ const getBioForm = (): bioFormFieldStateIF => {
     textEditorText: '',
     titleText: '',
   }
-
 }
 
 const getCalendarForm = (): calendarFormFieldStateIF => {
@@ -84,6 +83,13 @@ const getAudioForm = (): audioFormFieldStateIF => {
   } 
 }
 
+const getProgramsForm = (): bioFormFieldStateIF => {
+  return {
+    textEditorText: '',
+    titleText: '',
+  }
+}
+
 const getPlaylistsForm = (): playlistFormFieldStateIF => {
 
   return {
@@ -107,6 +113,8 @@ export const getInitFormFieldsState = (tab: formTypes) => {
       return getPhotosForm()
     case 'playlists':
       return getPlaylistsForm()
+    case 'programs':
+      return getProgramsForm()
     case 'videos':
       return getVideosForm()
     default: 
