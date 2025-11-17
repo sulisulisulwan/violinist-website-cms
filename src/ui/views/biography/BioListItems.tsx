@@ -16,15 +16,17 @@ const BioDocListItems = () => {
   const biosData = state.fetchedData
   if (!biosData || biosData.dataType !== 'bio') return null
 
+
   const setLongFormClickHandler = async (id: number, ) => {
     try {
       await bioLongFormApiHandler('PATCH', '', { id } as any)
       const newBioData = await bioApiHandler('GET')
+      
       setState((prevState) => ({
         ...prevState,
         fetchedData: {
-          ...prevState.fetchedData,
-          bio: newBioData.data
+          dataType: 'bio',
+          ...newBioData.data
         }
       }))
     } catch(e) {
@@ -39,8 +41,8 @@ const BioDocListItems = () => {
       setState((prevState) => ({
         ...prevState,
         fetchedData: {
-          ...prevState.fetchedData,
-          bio: newBioData.data
+          dataType: 'bio',
+          ...newBioData.data
         }
       }))
     } catch(e) {
