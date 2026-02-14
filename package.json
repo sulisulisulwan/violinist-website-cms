@@ -35,6 +35,6 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "texteditorforcms": "^1.0.21"
+    "texteditorforcms": "^1.0.22"
   }
 }

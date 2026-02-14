@@ -66,7 +66,9 @@ const BioEditForm = ({ formFieldValues, setFormFieldValues }: bioEditFormPropsIF
         toolbar={toolbarSettings}
         style={{
           width: '95%',
-          height: 'calc(100% - 150px)',
+          height: '50vh',
+          maxHeight: '50vh',
+          overflow: 'scroll',
           border: 'red solid 1px'
         }}
       />
