@@ -66,12 +66,17 @@ const ProgramsEditForm = ({ formFieldValues, setFormFieldValues }: programsEditF
           textEditorText: newText
         }))}}
         toolbar={toolbarSettings}
-        style={{
+        contentEditableStyle={{
+          overflow: 'scroll',
+          minHeight: 'calc(100% - 40px)',
+          maxHeight: 'calc(100% - 40px)',
+          border: '2px solid silver',
+          borderRadius: 5
+        }}
+        wrapperStyle={{
           width: '95%',
           height: '50vh',
           maxHeight: '50vh',
-          overflow: 'scroll',
-          border: 'red solid 1px'
         }}
       />
     </div>

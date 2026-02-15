@@ -46,6 +46,8 @@ const HamburgerNavVar = ({ tabsList, currentTab, handleClickTab }: any) => {
 
   const [ hamburgerIsOpen, setHamburgerIsOpen ] = React.useState(false)
 
+  const [ hoverIndex, setHoverIndex ] = React.useState(null)
+
   return (
     <div style={{
       display: 'flex',
@@ -120,13 +122,17 @@ const HamburgerNavVar = ({ tabsList, currentTab, handleClickTab }: any) => {
           { 
             tabsList.map((tab: tabListItemIF, i: number) => 
               <li 
+                onMouseOver={() => setHoverIndex(i)}
+                onMouseLeave={() => setHoverIndex(null)}
                 className={`li-tab tab-${tab.metaName}`}
                 key={tab.metaName + i}
                 data-tabname={tab.name}
                 style={{
+                  backgroundColor: hoverIndex === i ? 'lightgray' : 'rgb(237, 237, 237)',
                   padding: '10px 0',
                   marginLeft: 50,
-                  fontSize: 22
+                  fontSize: 22,
+                  cursor: 'pointer'
                 }}
               >{tab.name}</li>
             )
